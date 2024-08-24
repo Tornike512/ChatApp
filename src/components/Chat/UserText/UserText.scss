@@ -1,3 +1,15 @@
 @import "/src/sass/Breakpoints.scss";
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
+
+.user-text {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+
+  p {
+    padding: 8px 15px;
+    background: $secondary-chat-color;
+    border-radius: 30px;
+  }
+}
