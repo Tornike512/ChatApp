@@ -1,0 +1,33 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: $secondary-chat-color;
+  border-radius: 10px;
+
+  img {
+    margin-right: 20px;
+    border-radius: 100%;
+  }
+
+  .user-name {
+    & figcaption:last-of-type {
+      color: $secondary-text-color;
+    }
+  }
+  .online-dot {
+    width: 15px;
+    height: 15px;
+    background-color: $secondary-text-color;
+    position: absolute;
+    left: 59px;
+    top: 12px;
+    border-radius: 100%;
+  }
+}
