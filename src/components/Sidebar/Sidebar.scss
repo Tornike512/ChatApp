@@ -1,0 +1,10 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.sidebar {
+  width: 30%;
+  height: 100%;
+  padding: 25px 12px;
+  background-color: #1f1d1d;
+}

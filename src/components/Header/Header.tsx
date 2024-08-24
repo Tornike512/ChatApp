@@ -6,16 +6,16 @@ import "./Header.scss";
 
 export function Header() {
   return (
-    <header>
-      <figure>
+    <header className="header">
+      <figure className="group">
         <img src={personImage} alt="Group Logo" />
-        <div>
+        <div className="group-name">
           <figcaption>Kopers</figcaption>
           <figcaption>Online</figcaption>
         </div>
       </figure>
 
-      <figure>
+      <figure className="calls">
         <img src={videoCallImage} alt="Video Call Icon" />
         <img src={phoneCallImage} alt="Phone Call Icon" />
       </figure>

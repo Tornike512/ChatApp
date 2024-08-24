@@ -12,3 +12,12 @@ body {
   background-image: url("/src//assets//background\ 1.jpg");
   background-size: cover;
 }
+
+main {
+  padding: 40px 100px;
+  color: $main-text-color;
+
+  .header-sidebar-wrapper {
+    display: flex;
+  }
+}

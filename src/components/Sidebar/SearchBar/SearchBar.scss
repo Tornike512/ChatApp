@@ -1,0 +1,25 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.search-bar {
+  position: relative;
+
+  input {
+    padding: 8px;
+    background-color: #543639;
+    border-radius: 100px;
+    border: 1px solid #443639;
+
+    &::placeholder {
+      padding-left: 30px;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    cursor: pointer;
+  }
+}
