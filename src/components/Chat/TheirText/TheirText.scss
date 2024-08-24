@@ -1,0 +1,21 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.their-text {
+  display: flex;
+  align-items: center;
+  padding: 30px 10px;
+
+  img {
+    width: 40px;
+    margin-right: 10px;
+    border-radius: 100%;
+  }
+
+  figcaption {
+    padding: 8px 15px;
+    background: $secondary-chat-color;
+    border-radius: 30px;
+  }
+}
