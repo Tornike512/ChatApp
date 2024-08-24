@@ -9,6 +9,12 @@ export function Sidebar() {
       <SearchBar />
       <h2>Users</h2>
       <User />
+      <User />
+      <User />
+      <User />
+      <User />
+      <User />
+      <User />
     </aside>
   );
 }
