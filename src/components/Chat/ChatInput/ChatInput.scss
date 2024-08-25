@@ -1,0 +1,71 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.chat-input-wrapper {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+
+  .chat-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: $secondary-chat-color;
+    border-radius: 30px;
+
+    img {
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    input {
+      width: 100%;
+      background-color: $secondary-chat-color;
+      border: none;
+      outline: none;
+      font-size: 20px;
+      color: $main-text-color;
+    }
+
+    .import-file {
+      padding: 10px;
+      border-radius: 100%;
+
+      &:hover {
+        background-color: $main-hover-color;
+      }
+    }
+
+    .import-image {
+      padding: 10px;
+      border-radius: 100%;
+
+      &:hover {
+        background-color: $main-hover-color;
+      }
+    }
+
+    .take-photo {
+      padding: 10px;
+      border-radius: 100%;
+
+      &:hover {
+        background-color: $main-hover-color;
+      }
+    }
+  }
+
+  .record-voice {
+    padding: 10px;
+    background-color: $secondary-chat-color;
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $main-hover-color;
+    }
+  }
+}
