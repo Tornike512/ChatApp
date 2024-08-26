@@ -1,0 +1,13 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.emoji-container {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  bottom: 56px;
+  left: 40px;
+  background-color: $secondary-chat-color;
+  border-radius: 16px;
+}
