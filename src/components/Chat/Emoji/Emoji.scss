@@ -2,53 +2,9 @@
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
 
-.emoji-section {
+.emoji-container {
   position: absolute;
-  bottom: 56px;
-  left: 40px;
-
-  .switcher {
-    height: 40px;
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 20px;
-    background-color: $secondary-chat-color;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-
-    input {
-      width: 75%;
-      background-color: #312f2f;
-      border: none;
-      outline: none;
-      font-size: 20px;
-      color: #ffffff;
-    }
-
-    img:hover {
-      background-color: $main-hover-color;
-      cursor: pointer;
-    }
-  }
-
-  .emoji-container {
-    height: 200px;
-    display: grid;
-    grid-template-columns: repeat(108, 1fr);
-    overflow: hidden;
-    background-color: $secondary-chat-color;
-
-    .emoji {
-      width: 40px;
-      height: 40px;
-      padding: 5px;
-
-      &:hover {
-        background-color: $main-hover-color;
-        cursor: pointer;
-      }
-    }
-  }
+  bottom: -12px;
+  left: 35px;
+  z-index: -2;
 }

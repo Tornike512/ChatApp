@@ -4,8 +4,13 @@ import "./Emoji.scss";
 
 export function Emoji() {
   return (
-    <div className="emoji-section">
-      <EmojiPicker theme={"dark" as any} width={460} height={320} />
+    <div className="emoji-container">
+      <EmojiPicker
+        className="emoji"
+        theme={"dark" as any}
+        width={460}
+        height={320}
+      />
     </div>
   );
 }
