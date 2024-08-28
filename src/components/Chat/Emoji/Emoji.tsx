@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 import EmojiPicker from "emoji-picker-react";
 
 import "./Emoji.scss";
 
 export function Emoji() {
+  const [showEmojis, setShowEmojis] = useState<boolean>(false);
+
   return (
     <div className="emoji-container">
       <EmojiPicker
