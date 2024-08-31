@@ -1,5 +1,5 @@
 import { Emoji } from "../Emoji";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 
 import importEmoji from "@app/assets/emoji-icon.png";
@@ -11,7 +11,8 @@ import recordVoice from "@app/assets/record-voice-icon.png";
 import "./ChatInput.scss";
 
 export function ChatInput() {
-  const { showEmojis, setShowEmojis } = useContext(GlobalContext);
+  const [chatInput, setChatInput] = useState<string>("");
+  const { showEmojis, setShowEmojis, emoji } = useContext(GlobalContext);
 
   const handleShowEmojis = () => {
     if (showEmojis) {
@@ -21,12 +22,31 @@ export function ChatInput() {
     }
   };
 
+  const handleChatInput = (e: any) => {
+    setChatInput(e.target.value);
+  };
+
+  const handleChatForm = (e: any) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (emoji) {
+      setChatInput((prevInput) => prevInput + emoji);
+    }
+  }, [emoji]);
+
   return (
     <div className="chat-input-wrapper">
       <Emoji showEmojis={showEmojis} />
-      <form className="chat-input">
+      <form onSubmit={handleChatForm} className="chat-input">
         <img onClick={handleShowEmojis} src={importEmoji} alt="Import Emoji" />
-        <input placeholder="Message..." type="text" />
+        <input
+          value={chatInput}
+          onChange={handleChatInput}
+          placeholder="Message..."
+          type="text"
+        />
         <img className="import-file" src={importFile} alt="Import File" />
         <img className="import-image" src={importImages} alt="Import Images" />
         <img className="take-photo" src={takePhoto} alt="Take Photo" />
