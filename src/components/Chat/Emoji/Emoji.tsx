@@ -4,18 +4,20 @@ import EmojiPicker from "emoji-picker-react";
 
 import "./Emoji.scss";
 
-export function Emoji() {
-  const [showEmojis, setShowEmojis] = useState<boolean>(false);
-
+export function Emoji({ showEmojis }: { showEmojis: boolean }) {
   return (
-    <div className="emoji-container">
-      <EmojiPicker
-        className="emoji"
-        theme={"dark" as any}
-        width={460}
-        height={320}
-      />
-    </div>
+    <>
+      {showEmojis && (
+        <div className="emoji-container">
+          <EmojiPicker
+            className="emoji"
+            theme={"dark" as any}
+            width={460}
+            height={320}
+          />
+        </div>
+      )}
+    </>
   );
 }
 

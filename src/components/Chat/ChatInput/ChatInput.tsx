@@ -1,4 +1,5 @@
 import { Emoji } from "../Emoji";
+import { useState } from "react";
 
 import importEmoji from "@app/assets/emoji-icon.png";
 import importFile from "@app/assets/import-file-icon.svg";
@@ -9,11 +10,21 @@ import recordVoice from "@app/assets/record-voice-icon.png";
 import "./ChatInput.scss";
 
 export function ChatInput() {
+  const [showEmojis, setShowEmojis] = useState<boolean>(false);
+
+  const handleShowEmojis = () => {
+    if (showEmojis) {
+      setShowEmojis(false);
+    } else {
+      setShowEmojis(true);
+    }
+  };
+
   return (
     <div className="chat-input-wrapper">
-      <Emoji />
+      <Emoji showEmojis={showEmojis} />
       <form className="chat-input">
-        <img src={importEmoji} alt="Import Emoji" />
+        <img onClick={handleShowEmojis} src={importEmoji} alt="Import Emoji" />
         <input placeholder="Message..." type="text" />
         <img className="import-file" src={importFile} alt="Import File" />
         <img className="import-image" src={importImages} alt="Import Images" />
