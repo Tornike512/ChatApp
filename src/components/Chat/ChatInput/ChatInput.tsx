@@ -1,5 +1,6 @@
 import { Emoji } from "../Emoji";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
 
 import importEmoji from "@app/assets/emoji-icon.png";
 import importFile from "@app/assets/import-file-icon.svg";
@@ -10,7 +11,7 @@ import recordVoice from "@app/assets/record-voice-icon.png";
 import "./ChatInput.scss";
 
 export function ChatInput() {
-  const [showEmojis, setShowEmojis] = useState<boolean>(false);
+  const { showEmojis, setShowEmojis } = useContext(GlobalContext);
 
   const handleShowEmojis = () => {
     if (showEmojis) {

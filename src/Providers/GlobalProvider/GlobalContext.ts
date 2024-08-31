@@ -1,5 +1,11 @@
 import { createContext } from "react";
 
-interface TGlobalContext {}
+interface TGlobalContext {
+  showEmojis: boolean;
+  setShowEmojis: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export const GlobalContext = createContext<TGlobalContext>({});
+export const GlobalContext = createContext<TGlobalContext>({
+  showEmojis: false,
+  setShowEmojis: () => {},
+});
