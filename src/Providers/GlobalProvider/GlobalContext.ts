@@ -5,6 +5,8 @@ interface TGlobalContext {
   setShowEmojis: React.Dispatch<React.SetStateAction<boolean>>;
   emoji: string;
   setEmoji: React.Dispatch<React.SetStateAction<string>>;
+  emojiClicked: number;
+  setEmojiClicked: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -12,4 +14,6 @@ export const GlobalContext = createContext<TGlobalContext>({
   setShowEmojis: () => {},
   emoji: "",
   setEmoji: () => {},
+  emojiClicked: 0,
+  setEmojiClicked: () => {},
 });

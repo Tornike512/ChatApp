@@ -1,13 +1,15 @@
+import { useContext } from "react";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
 import EmojiPicker from "emoji-picker-react";
 
 import "./Emoji.scss";
-import { useContext, useState } from "react";
-import { GlobalContext } from "@app/Providers/GlobalProvider";
 
 export function Emoji({ showEmojis }: { showEmojis: boolean }) {
-  const { setEmoji } = useContext(GlobalContext);
+  const { setEmoji, setEmojiClicked, emojiClicked } = useContext(GlobalContext);
+
   const handleEmojiClick = (emojiObject: any) => {
     setEmoji(emojiObject.emoji);
+    setEmojiClicked(emojiClicked + 1);
   };
 
   return (

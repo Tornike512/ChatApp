@@ -12,7 +12,8 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const { showEmojis, setShowEmojis, emoji } = useContext(GlobalContext);
+  const { showEmojis, setShowEmojis, emoji, emojiClicked } =
+    useContext(GlobalContext);
 
   const handleShowEmojis = () => {
     if (showEmojis) {
@@ -31,10 +32,8 @@ export function ChatInput() {
   };
 
   useEffect(() => {
-    if (emoji) {
-      setChatInput((prevInput) => prevInput + emoji);
-    }
-  }, [emoji]);
+    setChatInput((prevInput) => prevInput + emoji);
+  }, [emojiClicked]);
 
   return (
     <div className="chat-input-wrapper">
