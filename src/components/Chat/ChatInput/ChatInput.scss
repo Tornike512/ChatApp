@@ -31,7 +31,8 @@
       color: $main-text-color;
     }
 
-    .import-file {
+    .send-message {
+      width: 55px;
       padding: 10px;
       border-radius: 100%;
 
@@ -40,15 +41,8 @@
       }
     }
 
-    .import-image {
-      padding: 10px;
-      border-radius: 100%;
-
-      &:hover {
-        background-color: $main-hover-color;
-      }
-    }
-
+    .import-file,
+    .import-image,
     .take-photo {
       padding: 10px;
       border-radius: 100%;
