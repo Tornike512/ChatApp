@@ -43,6 +43,15 @@
         }
       }
     }
+
+    @include lg {
+      height: 70px;
+      padding: 10px;
+    }
+  }
+
+  @include lg {
+    height: 86vh;
   }
 }
 

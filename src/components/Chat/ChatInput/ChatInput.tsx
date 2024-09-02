@@ -40,7 +40,12 @@ export function ChatInput() {
     <div className="chat-input-wrapper">
       <Emoji showEmojis={showEmojis} />
       <form onSubmit={handleChatForm} className="chat-input">
-        <img onClick={handleShowEmojis} src={importEmoji} alt="Import Emoji" />
+        <img
+          className="open-emoji"
+          onClick={handleShowEmojis}
+          src={importEmoji}
+          alt="Import Emoji"
+        />
         <input
           value={chatInput}
           onChange={handleChatInput}

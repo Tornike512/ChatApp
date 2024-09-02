@@ -17,5 +17,9 @@
     padding: 8px 15px;
     background: $secondary-chat-color;
     border-radius: 30px;
+
+    @include lg {
+      padding: 15px;
+    }
   }
 }

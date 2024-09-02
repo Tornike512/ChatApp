@@ -29,6 +29,10 @@
       outline: none;
       font-size: 20px;
       color: $main-text-color;
+
+      @include md {
+        padding-left: 20px;
+      }
     }
 
     .send-message {
@@ -38,6 +42,19 @@
 
       &:hover {
         background-color: $main-hover-color;
+      }
+    }
+
+    .open-emoji {
+      padding: 10px;
+      border-radius: 100%;
+
+      &:hover {
+        background-color: $main-hover-color;
+      }
+
+      @include md {
+        display: none;
       }
     }
 

@@ -27,5 +27,13 @@ main {
   .header-sidebar-wrapper {
     height: 90vh;
     display: flex;
+
+    @include lg {
+      height: 86vh;
+    }
+  }
+
+  @include lg {
+    padding: 0;
   }
 }
