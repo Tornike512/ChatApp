@@ -1,0 +1,17 @@
+@import "/src/sass/Breakpoints.scss";
+@import "/src/sass/Colors.scss";
+@import "/src/sass/Variables.scss";
+
+.show-sidebar {
+  width: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $main-chat-color;
+  cursor: pointer;
+
+  img {
+    width: 18px;
+    height: 25px;
+  }
+}
