@@ -17,9 +17,14 @@
     padding: 8px 15px;
     background: $secondary-chat-color;
     border-radius: 30px;
+    box-shadow: 1px 5px 6px #0f0f0f66;
 
     @include lg {
-      padding: 15px;
+      padding: 12px;
     }
+  }
+
+  @include lg {
+    font-weight: 100;
   }
 }
