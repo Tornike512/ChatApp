@@ -15,6 +15,7 @@ export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
   const { showEmojis, setShowEmojis, emoji, emojiClicked } =
     useContext(GlobalContext);
+  const [showIcons, setShowIcons] = useState<boolean>(true);
 
   const handleShowEmojis = () => {
     if (showEmojis) {
@@ -32,33 +33,57 @@ export function ChatInput() {
     e.preventDefault();
   };
 
+  const handleShowIcons = () => {
+    setShowIcons(false);
+  };
+
+  const handleChatModal = () => {
+    setShowIcons(true);
+  };
+
   useEffect(() => {
     setChatInput((prevInput) => prevInput + emoji);
   }, [emojiClicked]);
 
   return (
-    <div className="chat-input-wrapper">
-      <Emoji showEmojis={showEmojis} />
-      <form onSubmit={handleChatForm} className="chat-input">
-        <img
-          className="open-emoji"
-          onClick={handleShowEmojis}
-          src={importEmoji}
-          alt="Import Emoji"
-        />
-        <input
-          value={chatInput}
-          onChange={handleChatInput}
-          placeholder="Message..."
-          type="text"
-        />
-        <img className="send-message" src={sendIcon} alt="Send Message" />
-        <img className="import-file" src={importFile} alt="Import File" />
-        <img className="import-image" src={importImages} alt="Import Images" />
-        <img className="take-photo" src={takePhoto} alt="Take Photo" />
-      </form>
-      <img className="record-voice" src={recordVoice} alt="Record Voice" />
-    </div>
+    <>
+      {!showIcons && (
+        <div onClick={handleChatModal} className="chat-modal"></div>
+      )}
+      <div className="chat-input-wrapper">
+        <Emoji showEmojis={showEmojis} />
+        <form onSubmit={handleChatForm} className="chat-input">
+          {showIcons && (
+            <img
+              className="open-emoji"
+              onClick={handleShowEmojis}
+              src={importEmoji}
+              alt="Import Emoji"
+            />
+          )}
+          <input
+            value={chatInput}
+            onClick={handleShowIcons}
+            onChange={handleChatInput}
+            placeholder="Message..."
+            type="text"
+          />
+          {showIcons && (
+            <>
+              <img className="send-message" src={sendIcon} alt="Send Message" />
+              <img className="import-file" src={importFile} alt="Import File" />
+              <img
+                className="import-image"
+                src={importImages}
+                alt="Import Images"
+              />
+              <img className="take-photo" src={takePhoto} alt="Take Photo" />
+            </>
+          )}
+        </form>
+        <img className="record-voice" src={recordVoice} alt="Record Voice" />
+      </div>
+    </>
   );
 }
 
