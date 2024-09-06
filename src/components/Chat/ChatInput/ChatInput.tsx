@@ -1,6 +1,7 @@
 import { Emoji } from "../Emoji";
 import { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
+import { useWindowSize } from "@uidotdev/usehooks";
 import OtherIcons from "./OtherIcons";
 
 import importEmoji from "@app/assets/emoji-icon.png";
@@ -13,6 +14,8 @@ export function ChatInput() {
   const { showEmojis, setShowEmojis, emoji, emojiClicked } =
     useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
+
+  const { width } = useWindowSize();
 
   const handleShowEmojis = () => {
     if (showEmojis) {
@@ -31,7 +34,9 @@ export function ChatInput() {
   };
 
   const handleShowIcons = () => {
-    setShowIcons(false);
+    if (width !== null && width <= 1080) {
+      setShowIcons(false);
+    }
   };
 
   const handleChatModal = () => {
