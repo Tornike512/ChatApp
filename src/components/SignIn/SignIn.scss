@@ -11,8 +11,8 @@
   color: $main-text-color;
 
   .sign-in {
-    width: 50%;
-    height: 60%;
+    width: 400px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +44,7 @@
     }
 
     .name-input {
-      width: 80%;
+      width: 280px;
       padding: 8px;
       margin-top: 115px;
       background-color: $main-chat-color;
@@ -54,7 +54,7 @@
     }
 
     .join {
-      width: 75%;
+      width: 280px;
       height: 30px;
       position: absolute;
       bottom: 35px;
