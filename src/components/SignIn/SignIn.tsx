@@ -13,6 +13,7 @@ export function SignIn() {
           type="text"
           placeholder="Enter Your Name"
         />
+        <button className="join">Join</button>
       </form>
     </div>
   );

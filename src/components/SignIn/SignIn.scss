@@ -20,6 +20,7 @@
     padding: 20px;
     background-color: #1a1a1a;
     border-radius: 20px;
+    box-shadow: 1px 1px 12px #000000;
 
     .upload-input {
       width: 90px;
@@ -39,6 +40,7 @@
       height: 100px;
       position: absolute;
       top: 60px;
+      cursor: pointer;
     }
 
     .name-input {
@@ -49,6 +51,22 @@
       border-radius: 10px;
       outline: none;
       color: #ffffff;
+    }
+
+    .join {
+      width: 75%;
+      height: 30px;
+      position: absolute;
+      bottom: 35px;
+      background-color: $secondary-chat-color;
+      border-radius: 10px;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $main-hover-color;
+      }
     }
   }
 }
