@@ -8,7 +8,11 @@ export function SignIn() {
       <form className="sign-in">
         <img src={uploadImage} alt="Upload Image" />
         <input className="upload-input" type="file" accept="image/*" />
-        <input type="text" placeholder="Enter Your Name" />
+        <input
+          className="name-input"
+          type="text"
+          placeholder="Enter Your Name"
+        />
       </form>
     </div>
   );
