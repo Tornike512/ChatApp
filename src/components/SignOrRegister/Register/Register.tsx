@@ -16,20 +16,14 @@ export function Register() {
   };
 
   return (
-    <div className="register-container">
-      <form onSubmit={handleForm} className="register">
-        <img src={uploadImage} alt="Upload Image" />
-        <input className="upload-input" type="file" accept="image/*" />
-        <input
-          className="name-input"
-          type="text"
-          placeholder="Enter Your Name"
-        />
-        <button onClick={handleJoinClick} className="join">
-          Join
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleForm} className="register">
+      <img src={uploadImage} alt="Upload Image" />
+      <input className="upload-input" type="file" accept="image/*" />
+      <input className="name-input" type="text" placeholder="Enter Your Name" />
+      <button onClick={handleJoinClick} className="join">
+        Join
+      </button>
+    </form>
   );
 }
 

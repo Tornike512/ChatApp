@@ -3,59 +3,36 @@
 @import "/src/sass/Variables.scss";
 @import "/src/sass/Mixins.scss";
 
-.register-container {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 40px;
-  color: $main-text-color;
+.register {
+  @include sign-register-background;
 
-  .register {
-    width: 400px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 20px;
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    box-shadow: 1px 1px 12px #000000;
+  .upload-input {
+    width: 90px;
+    height: 100px;
+    position: absolute;
+    top: 60px;
+    box-shadow: 0px 0px 6px #ffffff75;
+    cursor: pointer;
 
-    .upload-input {
-      width: 90px;
-      height: 100px;
-      position: absolute;
-      top: 60px;
-      box-shadow: 0px 0px 6px #ffffff75;
-      cursor: pointer;
-
-      &::-webkit-file-upload-button {
-        opacity: 0;
-      }
+    &::-webkit-file-upload-button {
+      opacity: 0;
     }
+  }
 
-    img {
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      top: 60px;
-      cursor: pointer;
-    }
+  img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 60px;
+    cursor: pointer;
+  }
 
-    .name-input {
-      width: 280px;
-      padding: 8px;
-      margin-top: 115px;
-      background-color: $main-chat-color;
-      border-radius: 10px;
-      outline: none;
-      color: #ffffff;
-    }
+  .name-input {
+    @include primary-input(280px);
+    margin-top: 110px;
+  }
 
-    .join {
-      @include primary-button(280px, 30px);
-    }
+  .join {
+    @include primary-button(280px, 30px);
   }
 }

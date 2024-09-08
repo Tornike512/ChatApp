@@ -6,8 +6,8 @@ import "./SignOrRegister.scss";
 export function SignOrRegister() {
   return (
     <>
-      <div>
-        {/* <Register /> */}
+      <div className="sign-or-register">
+        <Register />
         <SignIn />
       </div>
     </>

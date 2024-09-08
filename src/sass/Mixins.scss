@@ -22,3 +22,16 @@
   outline: none;
   color: #ffffff;
 }
+
+@mixin sign-register-background() {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  box-shadow: 1px 1px 12px #000000;
+}

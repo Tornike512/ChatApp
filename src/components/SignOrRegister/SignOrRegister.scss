@@ -1,3 +1,12 @@
 @import "/src/sass/Breakpoints.scss";
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
+
+.sign-or-register {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+  color: $main-text-color;
+}
