@@ -7,6 +7,8 @@ interface TGlobalContext {
   setEmoji: React.Dispatch<React.SetStateAction<string>>;
   emojiClicked: number;
   setEmojiClicked: React.Dispatch<React.SetStateAction<number>>;
+  joinClicked: boolean;
+  setJoinClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -16,4 +18,6 @@ export const GlobalContext = createContext<TGlobalContext>({
   setEmoji: () => {},
   emojiClicked: 0,
   setEmojiClicked: () => {},
+  joinClicked: false,
+  setJoinClicked: () => {},
 });

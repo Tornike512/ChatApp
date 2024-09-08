@@ -1,17 +1,28 @@
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar";
-import { SignIn } from "./components/SignIn";
+import { Register } from "./components/Register";
 import ShowSidebar from "./components/ShowSidebar/ShowSidebar";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "./Providers/GlobalProvider";
 
 function App() {
+  const { setJoinClicked, joinClicked } = useContext(GlobalContext);
+
+  useEffect(() => {
+    setJoinClicked(false);
+  }, []);
+
   return (
     <main>
-      {/* <div className="header-sidebar-wrapper">
-        <Sidebar />
-        <ShowSidebar />
-        <Header />
-      </div> */}
-      <SignIn />
+      {joinClicked ? (
+        <div className="header-sidebar-wrapper">
+          <Sidebar />
+          <ShowSidebar />
+          <Header />
+        </div>
+      ) : (
+        <Register />
+      )}
     </main>
   );
 }
