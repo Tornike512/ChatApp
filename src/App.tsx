@@ -1,6 +1,6 @@
 import { Header } from "./components/Header/Header";
 import { Sidebar } from "./components/Sidebar";
-import { Register } from "./components/Register";
+import { SignOrRegister } from "./components/SignOrRegister";
 import ShowSidebar from "./components/ShowSidebar/ShowSidebar";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "./Providers/GlobalProvider";
@@ -21,7 +21,7 @@ function App() {
           <Header />
         </div>
       ) : (
-        <Register />
+        <SignOrRegister />
       )}
     </main>
   );
