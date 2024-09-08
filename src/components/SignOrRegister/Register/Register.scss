@@ -1,8 +1,9 @@
 @import "/src/sass/Breakpoints.scss";
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
+@import "/src/sass/Mixins.scss";
 
-.sign-in-container {
+.register-container {
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -10,7 +11,7 @@
   padding: 20px 40px;
   color: $main-text-color;
 
-  .sign-in {
+  .register {
     width: 400px;
     height: 300px;
     display: flex;
@@ -54,19 +55,7 @@
     }
 
     .join {
-      width: 280px;
-      height: 30px;
-      position: absolute;
-      bottom: 35px;
-      background-color: $secondary-chat-color;
-      border-radius: 10px;
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-
-      &:hover {
-        background-color: $main-hover-color;
-      }
+      @include primary-button(280px, 30px);
     }
   }
 }

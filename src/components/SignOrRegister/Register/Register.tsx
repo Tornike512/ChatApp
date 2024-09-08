@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import uploadImage from "@app/assets/upload-image.jpg";
 
-import "./SignIn.scss";
+import "./Register.scss";
 
 export function Register() {
   const { setJoinClicked } = useContext(GlobalContext);
@@ -16,8 +16,8 @@ export function Register() {
   };
 
   return (
-    <div className="sign-in-container">
-      <form onSubmit={handleForm} className="sign-in">
+    <div className="register-container">
+      <form onSubmit={handleForm} className="register">
         <img src={uploadImage} alt="Upload Image" />
         <input className="upload-input" type="file" accept="image/*" />
         <input

@@ -1,0 +1,15 @@
+@mixin primary-button($width, $height) {
+  width: $width;
+  height: $height;
+  position: absolute;
+  bottom: 35px;
+  background-color: $secondary-chat-color;
+  border-radius: 10px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main-hover-color;
+  }
+}
