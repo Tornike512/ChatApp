@@ -13,3 +13,12 @@
     background-color: $main-hover-color;
   }
 }
+
+@mixin primary-input($width) {
+  width: $width;
+  padding: 8px;
+  background-color: $main-chat-color;
+  border-radius: 10px;
+  outline: none;
+  color: #ffffff;
+}

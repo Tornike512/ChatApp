@@ -7,8 +7,8 @@ export function SignOrRegister() {
   return (
     <>
       <div>
-        <Register />
-        {/* <SignIn /> */}
+        {/* <Register /> */}
+        <SignIn />
       </div>
     </>
   );
