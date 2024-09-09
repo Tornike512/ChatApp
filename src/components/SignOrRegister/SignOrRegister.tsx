@@ -7,7 +7,7 @@ export function SignOrRegister() {
   return (
     <>
       <div className="sign-or-register">
-        <Register />
+        {/* <Register /> */}
         <SignIn />
       </div>
     </>
