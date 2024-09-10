@@ -1,3 +1,29 @@
 @import "/src/sass/Breakpoints.scss";
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
+@import "/src/sass/Mixins.scss";
+
+.sign-in-container {
+  @include sign-register-background(300px, 160px);
+
+  .sign-in {
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: $font-size-20px;
+    }
+
+    input {
+      position: unset;
+      @include primary-input(100%);
+    }
+
+    button {
+      position: unset;
+      margin-top: 12px;
+      @include primary-button(100%, 35px, unset);
+    }
+  }
+}

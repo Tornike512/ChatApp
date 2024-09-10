@@ -1,7 +1,9 @@
-@mixin primary-button($width, $height) {
+@import "./Colors.scss";
+
+@mixin primary-button($width, $height, $position) {
   width: $width;
   height: $height;
-  position: absolute;
+  position: $position;
   bottom: 35px;
   background-color: $secondary-chat-color;
   border-radius: 10px;
@@ -23,9 +25,9 @@
   color: #ffffff;
 }
 
-@mixin sign-register-background() {
-  width: 400px;
-  height: 300px;
+@mixin sign-register-background($width, $height) {
+  width: $width;
+  height: $height;
   display: flex;
   align-items: center;
   justify-content: center;
