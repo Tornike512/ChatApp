@@ -1,6 +1,7 @@
 @import "/src/sass/Breakpoints.scss";
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
+@import "/src/sass/Mixins.scss";
 
 .sign-or-register {
   height: 90vh;
@@ -9,4 +10,20 @@
   align-items: center;
   padding: 20px 40px;
   color: $main-text-color;
+
+  .sign-or-register-container {
+    @include sign-register-background(300px, 135px);
+    flex-direction: column;
+
+    .sign-in-button {
+      margin-bottom: 12px;
+      font-weight: bold;
+      @include primary-button(100%, 35px, unset);
+    }
+
+    .register-button {
+      font-weight: bold;
+      @include primary-button(100%, 35px, unset);
+    }
+  }
 }

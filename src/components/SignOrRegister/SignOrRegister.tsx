@@ -8,7 +8,11 @@ export function SignOrRegister() {
     <>
       <div className="sign-or-register">
         {/* <Register /> */}
-        <SignIn />
+        {/* <SignIn /> */}
+        <div className="sign-or-register-container">
+          <button className="sign-in-button">Sign in</button>
+          <button className="register-button">Quick register</button>
+        </div>
       </div>
     </>
   );
