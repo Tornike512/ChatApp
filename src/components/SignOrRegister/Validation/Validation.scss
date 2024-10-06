@@ -2,3 +2,10 @@
 @import "/src/sass/Colors.scss";
 @import "/src/sass/Variables.scss";
 @import "/src/sass/Mixins.scss";
+
+.validation {
+  position: absolute;
+  top: 20px;
+  font-size: 14px;
+  color: rgb(255, 0, 0);
+}

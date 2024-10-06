@@ -1,21 +1,27 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { CreateNewUser } from "@app/Hooks/CreateNewUser";
+import { Validation } from "../Validation";
 import uploadImage from "@app/assets/upload-image.jpg";
 
 import "./Register.scss";
 
 export function Register() {
-  const [registerImage, setRegisterImage] = useState<string>();
+  const [registerImage, setRegisterImage] = useState<string>("");
   const [showUploadedImage, setShowUploadedImage] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
+  const [showValidation, setShowValidation] = useState<boolean>(false);
 
   const { setJoinClicked } = useContext(GlobalContext);
 
   const handleJoinClick = () => {
-    setJoinClicked(true);
-    CreateNewUser(username, registerImage as string);
-    localStorage.setItem("user", username);
+    if (registerImage !== "" && username !== "") {
+      setJoinClicked(true);
+      CreateNewUser(username, registerImage as string);
+      localStorage.setItem("user", username);
+    } else {
+      setShowValidation(true);
+    }
   };
 
   const handleForm = (e: any) => {
@@ -42,8 +48,15 @@ export function Register() {
   };
 
   return (
-    <form onSubmit={handleForm} className="register">
+    <form action="/submit" onSubmit={handleForm} className="register">
       <img src={uploadImage} alt="Upload Image" />
+      {showValidation && (
+        <Validation
+          validationMessage={
+            "Please enter username and upload image to register"
+          }
+        />
+      )}
       <input
         onChange={handleImageUpload}
         className="upload-input"
