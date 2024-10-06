@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
+import { CreateNewUser } from "@app/Hooks/CreateNewUser";
 import uploadImage from "@app/assets/upload-image.jpg";
 
 import "./Register.scss";
@@ -7,11 +8,14 @@ import "./Register.scss";
 export function Register() {
   const [registerImage, setRegisterImage] = useState<string>();
   const [showUploadedImage, setShowUploadedImage] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
 
   const { setJoinClicked } = useContext(GlobalContext);
 
   const handleJoinClick = () => {
     setJoinClicked(true);
+    CreateNewUser(username, registerImage as string);
+    localStorage.setItem("user", username);
   };
 
   const handleForm = (e: any) => {
@@ -33,7 +37,9 @@ export function Register() {
     setShowUploadedImage(true);
   };
 
-  console.log(registerImage);
+  const handleUsername = (e: any) => {
+    setUsername(e.target.value);
+  };
 
   return (
     <form onSubmit={handleForm} className="register">
@@ -44,7 +50,12 @@ export function Register() {
         type="file"
         accept="image/*"
       />
-      <input className="name-input" type="text" placeholder="Enter Your Name" />
+      <input
+        onChange={handleUsername}
+        className="name-input"
+        type="text"
+        placeholder="Enter Your Name"
+      />
       {showUploadedImage && <img src={registerImage} alt="Uploaded Image" />}
       <button onClick={handleJoinClick} className="join">
         Join
