@@ -2,7 +2,7 @@ import { Chat } from "../Chat";
 import { useContext } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 
-import personImage from "@app/assets/person-image.png";
+import chatLogo from "@app/assets/cope.png";
 import phoneCallImage from "@app/assets/phone-call-icon.svg";
 import videoCallImage from "@app/assets/video-call-icon.svg";
 
@@ -23,7 +23,7 @@ export function Header() {
       <div className="header-chat-wrapper">
         <header className="header">
           <figure className="group">
-            <img src={personImage} alt="Group Logo" />
+            <img src={chatLogo} alt="Group Logo" />
             <div className="group-name">
               <figcaption>Kopers</figcaption>
               <figcaption>Online</figcaption>
