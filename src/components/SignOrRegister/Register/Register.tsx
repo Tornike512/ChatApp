@@ -27,10 +27,14 @@ export function Register() {
       setJoinClicked(true);
       CreateNewUser(username, registerImage as string);
       localStorage.setItem("user", username);
-    } else if (checkUserExistence) {
-      setUserExists(true);
     } else {
       setShowValidation(true);
+      setUserExists(false);
+    }
+
+    if (username !== "" && checkUserExistence) {
+      setUserExists(true);
+      setShowValidation(false);
     }
   };
 
@@ -67,6 +71,7 @@ export function Register() {
           }
         />
       )}
+      {userExists && <Validation validationMessage="The user already exists" />}
       <input
         onChange={handleImageUpload}
         className="upload-input"
