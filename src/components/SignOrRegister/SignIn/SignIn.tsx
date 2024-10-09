@@ -12,25 +12,26 @@ export function SignIn() {
 
   const { allUsernames } = ReceiveAllUsers();
 
-  const checkUserExistence = allUsernames.map((existingUser) => {
+  const checkUserExistence = allUsernames.filter((existingUser) => {
     return existingUser.username === username;
   });
 
-  console.log(checkUserExistence);
-
   const handleSignIn = () => {
-    if (!checkUserExistence && username !== "") {
-      setJoinClicked(false);
+    if (checkUserExistence.length !== 0 && username !== "") {
+      setJoinClicked(true);
+      setNameValidation(false);
+    } else if (checkUserExistence.length === 0 && username !== "") {
       setNameValidation(true);
+      setJoinClicked(false);
     }
+  };
+
+  const handleForm = (e: any) => {
+    e.preventDefault();
   };
 
   const handleUsernameField = (e: any) => {
     setUsername(e.target.value);
-  };
-
-  const handleForm = (e: any) => {
-    e.prevenDefault();
   };
 
   return (
@@ -47,7 +48,9 @@ export function SignIn() {
           type="text"
           placeholder="Enter your name"
         />
-        <button onClick={handleSignIn}>Sign In</button>
+        <button type="submit" onClick={handleSignIn}>
+          Sign In
+        </button>
       </form>
     </div>
   );
