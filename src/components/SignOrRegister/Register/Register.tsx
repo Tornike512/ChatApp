@@ -19,7 +19,7 @@ export function Register() {
   const { setJoinClicked } = useContext(GlobalContext);
 
   const checkUserExistence = allUsernames.map((existingUser) => {
-    return existingUser.username.includes(username);
+    return existingUser.username === username;
   });
 
   const handleJoinClick = () => {

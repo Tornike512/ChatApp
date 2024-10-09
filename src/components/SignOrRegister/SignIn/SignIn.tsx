@@ -12,19 +12,36 @@ export function SignIn() {
 
   const { allUsernames } = ReceiveAllUsers();
 
+  const checkUserExistence = allUsernames.map((existingUser) => {
+    return existingUser.username === username;
+  });
+
+  console.log(checkUserExistence);
+
   const handleSignIn = () => {
-    setJoinClicked(true);
+    if (!checkUserExistence && username !== "") {
+      setJoinClicked(false);
+      setNameValidation(true);
+    }
   };
 
   const handleUsernameField = (e: any) => {
     setUsername(e.target.value);
   };
 
+  const handleForm = (e: any) => {
+    e.prevenDefault();
+  };
+
   return (
     <div className="sign-in-container">
-      <form className="sign-in">
+      <form action="/submit" onSubmit={handleForm} className="sign-in">
         <h2>Sign in</h2>
-        <p className="validate-existence">Name you entered isn't registered</p>
+        {nameValidation && (
+          <p className="validate-existence">
+            Name you entered isn't registered
+          </p>
+        )}
         <input
           onChange={handleUsernameField}
           type="text"
