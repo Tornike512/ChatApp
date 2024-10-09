@@ -25,5 +25,13 @@
       margin-top: 12px;
       @include primary-button(100%, 35px, unset);
     }
+
+    .validate-existence {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: rgb(255, 0, 0);
+    }
   }
 }
