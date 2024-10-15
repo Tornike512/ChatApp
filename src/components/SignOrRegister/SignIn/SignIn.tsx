@@ -39,9 +39,7 @@ export function SignIn() {
       <form action="/submit" onSubmit={handleForm} className="sign-in">
         <h2>Sign in</h2>
         {nameValidation && (
-          <p className="validate-existence">
-            Name you entered isn't registered
-          </p>
+          <p className="validate-existence">The user doesn't exist</p>
         )}
         <input
           onChange={handleUsernameField}
