@@ -14,6 +14,7 @@ export function ChatInput() {
   const { showEmojis, setShowEmojis, emoji, emojiClicked } =
     useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
+  const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
 
   const { width } = useWindowSize();
 
@@ -37,6 +38,7 @@ export function ChatInput() {
     if (width !== null && width <= 1080) {
       setShowIcons(false);
     }
+    setShowSendIcon(true);
   };
 
   const handleChatModal = () => {
@@ -46,6 +48,8 @@ export function ChatInput() {
   useEffect(() => {
     setChatInput((prevInput) => prevInput + emoji);
   }, [emojiClicked]);
+
+  console.log(showSendIcon);
 
   return (
     <>
@@ -70,7 +74,7 @@ export function ChatInput() {
             placeholder="Message..."
             type="text"
           />
-          {showIcons && <OtherIcons />}
+          {showIcons && <OtherIcons showSendIcon={showSendIcon} />}
         </form>
         <img className="record-voice" src={recordVoice} alt="Record Voice" />
       </div>
