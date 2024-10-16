@@ -1,10 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-
-interface User {
-  username: string;
-  userImage: string;
-}
+import { User } from "@app/Types/Types";
 
 export const ReceiveUserByName = (username: string) => {
   const [user, setUser] = useState<User>({ username: "", userImage: "" });

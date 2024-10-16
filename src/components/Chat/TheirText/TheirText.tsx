@@ -6,7 +6,9 @@ import "./TheirText.scss";
 
 export function TheirText() {
   const { currentUser } = useContext(GlobalContext);
-  const { user } = ReceiveUserByName(currentUser);
+  const user = ReceiveUserByName(currentUser);
+
+  console.log(user);
 
   return (
     <figure className="their-text">

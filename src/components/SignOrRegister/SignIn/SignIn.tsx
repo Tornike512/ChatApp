@@ -8,7 +8,7 @@ export function SignIn() {
   const [username, setUsername] = useState<string>("");
   const [nameValidation, setNameValidation] = useState<boolean>(false);
 
-  const { setJoinClicked } = useContext(GlobalContext);
+  const { setJoinClicked, setCurrentUser } = useContext(GlobalContext);
 
   const { allUsernames } = ReceiveAllUsers();
 
@@ -17,9 +17,11 @@ export function SignIn() {
   });
 
   const handleSignIn = () => {
+    // if user exists
     if (checkUserExistence.length !== 0 && username !== "") {
       setJoinClicked(true);
       setNameValidation(false);
+      setCurrentUser(username);
     } else if (checkUserExistence.length === 0 && username !== "") {
       setNameValidation(true);
       setJoinClicked(false);
