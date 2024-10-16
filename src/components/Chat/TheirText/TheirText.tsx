@@ -6,13 +6,11 @@ import "./TheirText.scss";
 
 export function TheirText() {
   const { currentUser } = useContext(GlobalContext);
-  const user = ReceiveUserByName(currentUser);
-
-  console.log(user);
+  const currentUserInfo = ReceiveUserByName(currentUser);
 
   return (
     <figure className="their-text">
-      <img alt="Other User" />
+      <img src={currentUserInfo.user.userImage} alt="Other User" />
       <figcaption>Hello I am looking for</figcaption>
     </figure>
   );
