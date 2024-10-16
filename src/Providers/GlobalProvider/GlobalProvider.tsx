@@ -6,6 +6,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [emoji, setEmoji] = useState<string>("");
   const [emojiClicked, setEmojiClicked] = useState<number>(0);
   const [joinClicked, setJoinClicked] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<string>("");
 
   return (
     <GlobalContext.Provider
@@ -18,6 +19,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setEmojiClicked,
         joinClicked,
         setJoinClicked,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

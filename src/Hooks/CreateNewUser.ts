@@ -1,9 +1,11 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 export const CreateNewUser = async (username: string, userImage: string) => {
   const user = {
     name: username,
     image: userImage,
+    id: uuidv4(),
   };
 
   try {

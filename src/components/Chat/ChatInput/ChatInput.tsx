@@ -49,8 +49,6 @@ export function ChatInput() {
     setChatInput((prevInput) => prevInput + emoji);
   }, [emojiClicked]);
 
-  console.log(showSendIcon);
-
   return (
     <>
       {!showIcons && (
