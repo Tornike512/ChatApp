@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-
 import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
