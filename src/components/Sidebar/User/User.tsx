@@ -1,16 +1,18 @@
 import { ReceiveUserByName } from "@app/Hooks/ReceiveUserByName";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
+import { useContext } from "react";
 
 import "./User.scss";
 
 export function User() {
-  const storedUser = localStorage.getItem("user");
-  const { user } = ReceiveUserByName(storedUser as string);
+  const { currentUser } = useContext(GlobalContext);
+  const currentUserInfo = ReceiveUserByName(currentUser);
 
   return (
     <figure className="user">
-      <img src={user.userImage} alt="Person Image" />
+      <img src={currentUserInfo.user.userImage} alt="Person Image" />
       <div className="user-name">
-        <figcaption>{user.username}</figcaption>
+        <figcaption>{currentUserInfo.user.username}</figcaption>
         <figcaption>Typing...</figcaption>
       </div>
       <div className="online-dot"></div>
