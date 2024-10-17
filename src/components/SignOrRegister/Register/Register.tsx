@@ -26,7 +26,6 @@ export function Register() {
     if (registerImage !== "" && username !== "") {
       setJoinClicked(true);
       CreateNewUser(username, registerImage as string);
-      localStorage.setItem("user", username);
     } else {
       setShowValidation(true);
       setUserExists(false);
