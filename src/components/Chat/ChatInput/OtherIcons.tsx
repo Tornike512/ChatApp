@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
+import { io } from "socket.io-client";
 
 import importFile from "@app/assets/import-file-icon.svg";
 import importImages from "@app/assets/import-image-icon.png";
@@ -12,10 +13,19 @@ interface TSendIcon {
 }
 
 export function OtherIcons({ showSendIcon, sendMessage }: TSendIcon) {
-  const { setChatMessage } = useContext(GlobalContext);
+  const { setChatMessage, chatMessage } = useContext(GlobalContext);
+
+  const socket = io("http://localhost:5173");
+
+  useEffect(() => {
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
 
   const handleSendIcon = () => {
     setChatMessage(sendMessage);
+    socket.emit("message", { message: chatMessage });
   };
 
   return (

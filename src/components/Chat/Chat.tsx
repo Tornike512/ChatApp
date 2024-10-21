@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { SendMessagesToChat } from "@app/Hooks/SendMessagesToChat";
 import { io } from "socket.io-client";
 import { TheirText } from "./TheirText";
@@ -8,10 +9,6 @@ import { ChatInput } from "./ChatInput";
 import "./Chat.scss";
 
 export function Chat() {
-  const [sendMessage, setSendMessage] = useState<string>("");
-
-  const socket = io("http://localhost:4500");
-
   const { messages } = SendMessagesToChat();
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
@@ -19,8 +16,6 @@ export function Chat() {
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, []);
-
-  const handleSendMessage = () => {};
 
   return (
     <>
