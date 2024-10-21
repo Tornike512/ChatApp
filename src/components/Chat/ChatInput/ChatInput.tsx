@@ -73,7 +73,9 @@ export function ChatInput() {
             placeholder="Message..."
             type="text"
           />
-          {showIcons && <OtherIcons showSendIcon={showSendIcon} />}
+          {showIcons && (
+            <OtherIcons sendMessage={chatInput} showSendIcon={showSendIcon} />
+          )}
         </form>
         <img className="record-voice" src={recordVoice} alt="Record Voice" />
       </div>

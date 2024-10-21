@@ -1,12 +1,27 @@
+import { useContext, useState } from "react";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
+
 import importFile from "@app/assets/import-file-icon.svg";
 import importImages from "@app/assets/import-image-icon.png";
 import takePhoto from "@app/assets/take-image-icon.png";
 import sendIcon from "@app/assets/send-icon.png";
 
-export function OtherIcons({ showSendIcon }: { showSendIcon: boolean }) {
+interface TSendIcon {
+  showSendIcon: boolean;
+  sendMessage: string;
+}
+
+export function OtherIcons({ showSendIcon, sendMessage }: TSendIcon) {
+  const { setChatMessage } = useContext(GlobalContext);
+
+  const handleSendIcon = () => {
+    setChatMessage(sendMessage);
+  };
+
   return (
     <>
       <img
+        onClick={handleSendIcon}
         style={showSendIcon ? { display: "flex" } : {}}
         className="send-message"
         src={sendIcon}
