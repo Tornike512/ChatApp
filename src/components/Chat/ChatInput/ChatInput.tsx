@@ -27,7 +27,8 @@ export function ChatInput() {
   };
 
   const handleChatInput = (e: any) => {
-    setChatInput(e.target.value);
+    const newValue = e.target.value;
+    setChatInput(newValue);
   };
 
   const handleChatForm = (e: any) => {

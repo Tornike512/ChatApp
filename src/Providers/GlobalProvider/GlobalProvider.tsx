@@ -7,6 +7,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [emojiClicked, setEmojiClicked] = useState<number>(0);
   const [joinClicked, setJoinClicked] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<string>("");
+  const [chatMessage, setChatMessage] = useState<string>("");
 
   return (
     <GlobalContext.Provider
@@ -21,6 +22,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setJoinClicked,
         currentUser,
         setCurrentUser,
+        chatMessage,
+        setChatMessage,
       }}
     >
       {children}

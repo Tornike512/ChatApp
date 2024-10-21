@@ -11,6 +11,8 @@ interface TGlobalContext {
   setJoinClicked: React.Dispatch<React.SetStateAction<boolean>>;
   currentUser: string;
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
+  chatMessage: string;
+  setChatMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -24,4 +26,6 @@ export const GlobalContext = createContext<TGlobalContext>({
   setJoinClicked: () => {},
   currentUser: "",
   setCurrentUser: () => {},
+  chatMessage: "",
+  setChatMessage: () => {},
 });
