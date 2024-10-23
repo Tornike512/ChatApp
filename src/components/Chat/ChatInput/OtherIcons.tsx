@@ -10,13 +10,18 @@ import sendIcon from "@app/assets/send-icon.png";
 interface TSendIcon {
   showSendIcon: boolean;
   sendMessage: string;
+  currentUser: string;
 }
 
-export function OtherIcons({ showSendIcon, sendMessage }: TSendIcon) {
+export function OtherIcons({
+  showSendIcon,
+  sendMessage,
+  currentUser,
+}: TSendIcon) {
   const socket = io("http://localhost:5000");
 
   const handleSendIcon = () => {
-    socket.emit("message", { message: sendMessage });
+    socket.emit("message", { message: sendMessage, username: currentUser });
   };
 
   return (

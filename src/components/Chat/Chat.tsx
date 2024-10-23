@@ -9,23 +9,28 @@ import { ChatInput } from "./ChatInput";
 import "./Chat.scss";
 
 export function Chat() {
-  const [chatHistory, setChatHistory] = useState<string>("");
+  const [chatHistory, setChatHistory] = useState<string[]>([]);
   const { messages } = SendMessagesToChat();
+
+  const socket = io("http://localhost:5000");
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
+    socket.on("message", (message) => {
+      setChatHistory((prev) => [...prev, message]);
+    });
   }, []);
 
-  console.log(messages);
+  console.log(chatHistory);
 
   return (
     <>
       <div className="chat">
-        {messages.map((message: any) => (
-          <div key={message.message}></div>
-        ))}
+        {chatHistory.map((chat: any) => {
+          return <div>{chat.message}</div>;
+        })}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

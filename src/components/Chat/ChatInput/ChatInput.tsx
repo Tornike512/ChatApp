@@ -11,7 +11,7 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const { showEmojis, setShowEmojis, emoji, emojiClicked } =
+  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
     useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
@@ -74,7 +74,11 @@ export function ChatInput() {
             type="text"
           />
           {showIcons && (
-            <OtherIcons sendMessage={chatInput} showSendIcon={showSendIcon} />
+            <OtherIcons
+              currentUser={currentUser}
+              sendMessage={chatInput}
+              showSendIcon={showSendIcon}
+            />
           )}
         </form>
         <img className="record-voice" src={recordVoice} alt="Record Voice" />
