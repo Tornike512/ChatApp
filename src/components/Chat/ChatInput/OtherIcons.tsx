@@ -13,19 +13,10 @@ interface TSendIcon {
 }
 
 export function OtherIcons({ showSendIcon, sendMessage }: TSendIcon) {
-  const { setChatMessage, chatMessage } = useContext(GlobalContext);
-
-  const socket = io("http://localhost:5173");
-
-  useEffect(() => {
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
+  const socket = io("http://localhost:5000");
 
   const handleSendIcon = () => {
-    setChatMessage(sendMessage);
-    socket.emit("message", { message: chatMessage });
+    socket.emit("message", { message: sendMessage });
   };
 
   return (

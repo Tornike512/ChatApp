@@ -9,6 +9,7 @@ import { ChatInput } from "./ChatInput";
 import "./Chat.scss";
 
 export function Chat() {
+  const [chatHistory, setChatHistory] = useState<string>("");
   const { messages } = SendMessagesToChat();
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
@@ -17,12 +18,14 @@ export function Chat() {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, []);
 
+  console.log(messages);
+
   return (
     <>
       <div className="chat">
-        {messages.map((message) => {
-          return message;
-        })}
+        {messages.map((message: any) => (
+          <div key={message.message}></div>
+        ))}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>
