@@ -23,8 +23,6 @@ export function Chat() {
     });
   }, []);
 
-  console.log(chatHistory);
-
   return (
     <>
       <div className="chat">

@@ -46,6 +46,10 @@ export function ChatInput() {
     setShowIcons(true);
   };
 
+  const clearChatInput = () => {
+    setChatInput("");
+  };
+
   useEffect(() => {
     setChatInput((prevInput) => prevInput + emoji);
   }, [emojiClicked]);
@@ -78,6 +82,7 @@ export function ChatInput() {
               currentUser={currentUser}
               sendMessage={chatInput}
               showSendIcon={showSendIcon}
+              clearInput={clearChatInput}
             />
           )}
         </form>
