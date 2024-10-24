@@ -1,9 +1,9 @@
 import "./UserText.scss";
 
-export function UserText() {
+export function UserText({ message, id }: { message: string; id: any }) {
   return (
-    <div className="user-text">
-      <p>What are you looking for?</p>
+    <div key={id} className="user-text">
+      <p>{message}</p>
     </div>
   );
 }

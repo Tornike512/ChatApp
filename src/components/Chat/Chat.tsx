@@ -12,6 +12,7 @@ import "./Chat.scss";
 export function Chat() {
   const [chatHistory, setChatHistory] = useState<string[]>([]);
   const { messages } = SendMessagesToChat();
+  const { currentUser } = useContext(GlobalContext);
 
   const socket = io("http://localhost:5000");
 
@@ -31,12 +32,17 @@ export function Chat() {
       <div className="chat">
         <div>
           {messages.map((message: any, index: number) => {
-            return <div key={index}>{message.message}</div>;
+            return currentUser === message.username ? (
+              <UserText id={index} message={message.message} />
+            ) : null;
           })}
         </div>
-        {chatHistory.map((chat: any) => {
-          return <div key={uniqueId}>{chat.message}</div>;
-        })}
+        {chatHistory.map(
+          (chat: any) =>
+            currentUser === chat.username && (
+              <UserText id={uniqueId} message={chat.message} />
+            )
+        )}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>
