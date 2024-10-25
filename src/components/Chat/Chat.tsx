@@ -21,11 +21,14 @@ export function Chat() {
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
     socket.on("message", (message) => {
       setChatHistory((prev) => [...prev, message]);
     });
   }, []);
+
+  useEffect(() => {
+    endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
+  }, [chatHistory]);
 
   return (
     <>
