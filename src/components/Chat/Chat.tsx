@@ -28,7 +28,7 @@ export function Chat() {
 
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
-  }, [chatHistory]);
+  }, [chatHistory, messages]);
 
   return (
     <>
