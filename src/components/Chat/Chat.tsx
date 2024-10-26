@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
+import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 
 import "./Chat.scss";
 
@@ -17,6 +18,13 @@ export function Chat() {
   const socket = io("http://localhost:5000");
 
   const uniqueId = uuidv4();
+
+  const { allUsernames } = ReceiveAllUsers();
+  const usersImages = allUsernames.map((user) => {
+    if (currentUser === user.username) {
+      return user.userImage;
+    }
+  });
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
@@ -37,7 +45,9 @@ export function Chat() {
           {messages.map((message: any, index: number) => {
             return currentUser === message.username ? (
               <UserText id={index} message={message.message} />
-            ) : null;
+            ) : (
+              <TheirText id={uniqueId} message={message.message} />
+            );
           })}
         </div>
         {chatHistory.map(

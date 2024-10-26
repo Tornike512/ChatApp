@@ -11,6 +11,7 @@ interface TSendIcon {
   showSendIcon: boolean;
   sendMessage: string;
   currentUser: string;
+  userImage: any;
   clearInput: () => void;
 }
 
@@ -18,13 +19,18 @@ export function OtherIcons({
   showSendIcon,
   sendMessage,
   currentUser,
+  userImage,
   clearInput,
 }: TSendIcon) {
   const socket = io("http://localhost:5000");
 
   const handleSendIcon = () => {
     if (sendMessage !== "") {
-      socket.emit("message", { message: sendMessage, username: currentUser });
+      socket.emit("message", {
+        message: sendMessage,
+        username: currentUser,
+        userImage: userImage,
+      });
     }
     clearInput();
   };

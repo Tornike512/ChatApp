@@ -1,13 +1,20 @@
 import { ReceiveUserByName } from "@app/Hooks/ReceiveUserByName";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { useContext, useEffect } from "react";
+import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { io } from "socket.io-client";
 
 import "./TheirText.scss";
 
-export function TheirText() {
+export function TheirText({ id, message }: { id: string; message: string }) {
   const { currentUser } = useContext(GlobalContext);
   const currentUserInfo = ReceiveUserByName(currentUser);
+  const { allUsernames } = ReceiveAllUsers();
+  const usersImages = allUsernames.map((user) => {
+    if (currentUser === user.username) {
+      return user.userImage;
+    }
+  });
 
   useEffect(() => {
     const socket = io("ws://localhost:5173");
@@ -26,9 +33,9 @@ export function TheirText() {
   }, []);
 
   return (
-    <figure className="their-text">
-      <img src={currentUserInfo.user.userImage} alt="Other User" />
-      <figcaption>Hello I am looking for</figcaption>
+    <figure key={id} className="their-text">
+      <img alt="Other User" />
+      <figcaption>{message}</figcaption>
     </figure>
   );
 }
