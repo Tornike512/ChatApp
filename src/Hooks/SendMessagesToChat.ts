@@ -6,7 +6,9 @@ export const SendMessagesToChat = () => {
 
   const sendMessage = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/messages`);
+      const response = await axios.get(
+        `https://chatapp-backend-dgge.onrender.com/messages`
+      );
 
       setMessages(response.data);
     } catch (error) {

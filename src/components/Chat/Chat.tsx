@@ -26,13 +26,13 @@ export function Chat() {
     }
   });
 
-  const endOfPageRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     socket.on("message", (message) => {
       setChatHistory((prev) => [...prev, message]);
     });
   }, []);
+
+  const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
@@ -46,7 +46,11 @@ export function Chat() {
             return currentUser === message.username ? (
               <UserText id={index} message={message.message} />
             ) : (
-              <TheirText id={uniqueId} message={message.message} />
+              <TheirText
+                userImage={usersImages}
+                id={uniqueId}
+                message={message.message}
+              />
             );
           })}
         </div>

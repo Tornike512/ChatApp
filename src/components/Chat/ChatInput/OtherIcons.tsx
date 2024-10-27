@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { GlobalContext } from "@app/Providers/GlobalProvider";
+// import { useContext, useEffect } from "react";
+// import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { io } from "socket.io-client";
 
 import importFile from "@app/assets/import-file-icon.svg";
@@ -11,7 +11,6 @@ interface TSendIcon {
   showSendIcon: boolean;
   sendMessage: string;
   currentUser: string;
-  userImage: any;
   clearInput: () => void;
 }
 
@@ -19,7 +18,6 @@ export function OtherIcons({
   showSendIcon,
   sendMessage,
   currentUser,
-  userImage,
   clearInput,
 }: TSendIcon) {
   const socket = io("http://localhost:5000");
@@ -29,7 +27,6 @@ export function OtherIcons({
       socket.emit("message", {
         message: sendMessage,
         username: currentUser,
-        userImage: userImage,
       });
     }
     clearInput();

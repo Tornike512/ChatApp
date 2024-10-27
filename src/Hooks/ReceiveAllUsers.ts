@@ -11,7 +11,9 @@ export const ReceiveAllUsers = () => {
 
   const getAllUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/all-users");
+      const response = await axios.get(
+        "https://chatapp-backend-dgge.onrender.com/all-users"
+      );
 
       setAllUsernames(response.data);
     } catch (error) {
