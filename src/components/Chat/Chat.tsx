@@ -7,19 +7,20 @@ import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
 import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
+import { ChatMessageType } from "@app/Types/Types";
 
 import "./Chat.scss";
 
 export function Chat() {
-  const [chatHistory, setChatHistory] = useState<string[]>([]);
+  const [chatHistory, setChatHistory] = useState<ChatMessageType[]>([]);
   const { messages } = SendMessagesToChat();
   const { currentUser } = useContext(GlobalContext);
 
   useEffect(() => {
     const socket = io("http://localhost:5000");
 
-    socket.on("message", (message) => {
-      setChatHistory((prev) => [...prev, message]);
+    socket.on("message", ({ message, userImage }) => {
+      setChatHistory((prev) => [...prev, { message, userImage }]);
     });
 
     return () => {
@@ -41,6 +42,8 @@ export function Chat() {
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages]);
+
+  console.log(messages);
 
   return (
     <>
