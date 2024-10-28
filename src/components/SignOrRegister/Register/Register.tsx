@@ -5,6 +5,8 @@ import { Validation } from "../Validation";
 import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import uploadImage from "@app/assets/upload-image.jpg";
 
+import axios from "axios";
+
 import "./Register.scss";
 
 export function Register() {
@@ -41,19 +43,26 @@ export function Register() {
     e.preventDefault();
   };
 
-  const handleImageUpload = (e: any) => {
+  const handleImageUpload = async (e: any) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imageUrl = reader.result?.toString() || "";
-        setRegisterImage(imageUrl);
-      };
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "s2tpq2wh"); // Replace with your actual preset name
 
-      reader.readAsDataURL(file);
+      try {
+        const response = await axios.post(
+          "https://api.cloudinary.com/v1_1/dq3jbbr1e/image/upload",
+          formData
+        );
+
+        // Save the Cloudinary URL in state
+        setRegisterImage(response.data.secure_url);
+        setShowUploadedImage(true);
+      } catch (error) {
+        console.log("Error uploading image:", error);
+      }
     }
-
-    setShowUploadedImage(true);
   };
 
   const handleUsername = (e: any) => {
