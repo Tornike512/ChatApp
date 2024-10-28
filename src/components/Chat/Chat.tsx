@@ -19,14 +19,16 @@ export function Chat() {
   useEffect(() => {
     const socket = io("http://localhost:5000");
 
-    socket.on("message", ({ message, userImage }) => {
-      setChatHistory((prev) => [...prev, { message, userImage }]);
+    socket.on("message", ({ message, userImage, username }) => {
+      setChatHistory((prev) => [...prev, { message, userImage, username }]);
     });
 
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  console.log(chatHistory);
 
   const uniqueId = uuidv4();
 
@@ -42,8 +44,6 @@ export function Chat() {
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages]);
-
-  console.log(messages);
 
   return (
     <>
