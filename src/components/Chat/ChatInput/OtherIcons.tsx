@@ -1,5 +1,5 @@
-// import { useContext, useEffect } from "react";
-// import { GlobalContext } from "@app/Providers/GlobalProvider";
+import { useContext, useEffect, useRef } from "react";
+import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { io } from "socket.io-client";
 
 import importFile from "@app/assets/import-file-icon.svg";
@@ -20,11 +20,19 @@ export function OtherIcons({
   currentUser,
   clearInput,
 }: TSendIcon) {
-  const socket = io("http://localhost:5000");
+  const socketRef = useRef<any>(null);
+
+  useEffect(() => {
+    socketRef.current = io("http://localhost:5000");
+
+    return () => {
+      socketRef.current.disconnect();
+    };
+  }, []);
 
   const handleSendIcon = () => {
     if (sendMessage !== "") {
-      socket.emit("message", {
+      socketRef.current.emit("message", {
         message: sendMessage,
         username: currentUser,
       });

@@ -48,7 +48,7 @@ export function Register() {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "s2tpq2wh"); // Replace with your actual preset name
+      formData.append("upload_preset", "s2tpq2wh");
 
       try {
         const response = await axios.post(
@@ -56,7 +56,6 @@ export function Register() {
           formData
         );
 
-        // Save the Cloudinary URL in state
         setRegisterImage(response.data.secure_url);
         setShowUploadedImage(true);
       } catch (error) {

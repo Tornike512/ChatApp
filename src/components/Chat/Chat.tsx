@@ -15,7 +15,17 @@ export function Chat() {
   const { messages } = SendMessagesToChat();
   const { currentUser } = useContext(GlobalContext);
 
-  const socket = io("http://localhost:5000");
+  useEffect(() => {
+    const socket = io("http://localhost:5000");
+
+    socket.on("message", (message) => {
+      setChatHistory((prev) => [...prev, message]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const uniqueId = uuidv4();
 
@@ -25,12 +35,6 @@ export function Chat() {
       return user.userImage;
     }
   });
-
-  useEffect(() => {
-    socket.on("message", (message) => {
-      setChatHistory((prev) => [...prev, message]);
-    });
-  }, []);
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 

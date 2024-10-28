@@ -1,6 +1,6 @@
 import { Emoji } from "../Emoji";
 import { useContext, useState, useEffect } from "react";
-// import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
+import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { useWindowSize } from "@uidotdev/usehooks";
 import OtherIcons from "./OtherIcons";
@@ -17,13 +17,13 @@ export function ChatInput() {
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
 
-  // const { allUsernames } = ReceiveAllUsers();
+  const { allUsernames } = ReceiveAllUsers();
 
-  // const usersImages = allUsernames.map((user) => {
-  //   if (currentUser === user.username) {
-  //     return user.userImage;
-  //   }
-  // });
+  const usersImages = allUsernames.map((user) => {
+    if (currentUser === user.username) {
+      return user.userImage;
+    }
+  });
 
   const { width } = useWindowSize();
 
