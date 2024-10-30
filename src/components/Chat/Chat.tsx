@@ -28,16 +28,7 @@ export function Chat() {
     };
   }, []);
 
-  console.log(chatHistory);
-
   const uniqueId = uuidv4();
-
-  const { allUsernames } = ReceiveAllUsers();
-  const usersImages = allUsernames.map((user) => {
-    if (currentUser === user.username) {
-      return user.userImage;
-    }
-  });
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
@@ -54,7 +45,7 @@ export function Chat() {
               <UserText id={index} message={message.message} />
             ) : (
               <TheirText
-                userImage={usersImages}
+                userImage={message.userImage}
                 id={uniqueId}
                 message={message.message}
               />
