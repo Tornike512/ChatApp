@@ -19,7 +19,7 @@ export function ChatInput() {
 
   const { allUsernames } = ReceiveAllUsers();
 
-  const usersImages = allUsernames.map((user) => {
+  const usersImages = allUsernames.filter((user) => {
     if (currentUser === user.username) {
       return user.userImage;
     }
@@ -88,6 +88,7 @@ export function ChatInput() {
           />
           {showIcons && (
             <OtherIcons
+              userImage={usersImages}
               currentUser={currentUser}
               sendMessage={chatInput}
               showSendIcon={showSendIcon}

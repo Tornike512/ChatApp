@@ -18,11 +18,6 @@ export function TheirText({
   const { currentUser } = useContext(GlobalContext);
   const currentUserInfo = ReceiveUserByName(currentUser);
   const { allUsernames } = ReceiveAllUsers();
-  const usersImages: any = allUsernames.map((user) => {
-    if (currentUser === user.username) {
-      return user.userImage;
-    }
-  });
 
   useEffect(() => {
     const socket = io("http://localhost:5000");
