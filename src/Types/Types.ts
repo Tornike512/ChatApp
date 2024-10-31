@@ -1,6 +1,6 @@
 // Type For Current User
 
-export interface User {
+export interface UserType {
   username: string;
   userImage: string;
 }

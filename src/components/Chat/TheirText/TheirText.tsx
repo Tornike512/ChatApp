@@ -1,7 +1,5 @@
-import { ReceiveUserByName } from "@app/Hooks/ReceiveUserByName";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { useEffect, useContext } from "react";
-import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { io } from "socket.io-client";
 
 import "./TheirText.scss";
@@ -16,8 +14,6 @@ export function TheirText({
   userImage: any;
 }) {
   const { currentUser } = useContext(GlobalContext);
-  const currentUserInfo = ReceiveUserByName(currentUser);
-  const { allUsernames } = ReceiveAllUsers();
 
   useEffect(() => {
     const socket = io("http://localhost:5000");
