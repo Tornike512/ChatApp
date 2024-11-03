@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { User } from "@app/Types/Types";
+import { UserType } from "@app/Types/Types";
 
 export const ReceiveUserByName = (username: string) => {
-  const [user, setUser] = useState<User>({ username: "", userImage: "" });
+  const [user, setUser] = useState<UserType>({ username: "", userImage: "" });
 
   const getUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/user?username=${username}`
+        `https://chatapp-backend-3-uo3h.onrender.com/user?username=${username}`
       );
 
       setUser(response.data);
