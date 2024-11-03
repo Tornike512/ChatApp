@@ -7,7 +7,7 @@ export const SendMessagesToChat = () => {
   const sendMessage = async () => {
     try {
       const response = await axios.get(
-        `https://chatapp-backend-3-uo3h.onrender.com/messages`
+        `https://new-peuc.onrender.com/messages`
       );
 
       setMessages(response.data);

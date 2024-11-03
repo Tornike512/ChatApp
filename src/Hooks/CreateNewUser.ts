@@ -8,7 +8,7 @@ export const CreateNewUser = async (username: string, userImage: string) => {
 
   try {
     const response = await axios.post(
-      "https://chatapp-backend-3-uo3h.onrender.com/user",
+      "https://new-peuc.onrender.com/user",
       user
     );
     console.log(response.data);

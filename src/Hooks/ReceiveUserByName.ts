@@ -8,7 +8,7 @@ export const ReceiveUserByName = (username: string) => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        `https://chatapp-backend-3-uo3h.onrender.com/user?username=${username}`
+        `https://new-peuc.onrender.com/user?username=${username}`
       );
 
       setUser(response.data);

@@ -33,7 +33,7 @@ export function SignIn() {
   };
 
   const handleUsernameField = (e: any) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.toLowerCase());
   };
 
   return (

@@ -25,8 +25,6 @@ export function Register() {
     return existingUser.username === username;
   });
 
-  console.log(currentUser);
-
   const handleJoinClick = () => {
     if (registerImage !== "" && username !== "") {
       setJoinClicked(true);
@@ -69,7 +67,7 @@ export function Register() {
   };
 
   const handleUsername = (e: any) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.toLowerCase());
   };
 
   return (

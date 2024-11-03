@@ -12,7 +12,7 @@ export const ReceiveAllUsers = () => {
   const getAllUsers = async () => {
     try {
       const response = await axios.get(
-        "https://chatapp-backend-3-uo3h.onrender.com/all-users"
+        "https://new-peuc.onrender.com/all-users"
       );
 
       setAllUsernames(response.data);
