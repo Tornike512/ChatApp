@@ -13,8 +13,6 @@ export function TheirText({
   message: string;
   userImage: any;
 }) {
-  const { currentUser } = useContext(GlobalContext);
-
   useEffect(() => {
     const socket = io("http://localhost:5000");
 
@@ -22,9 +20,6 @@ export function TheirText({
       console.log("Socket connected!");
     });
 
-    socket.on("someEvent", (data) => {
-      console.log("Received data:", data);
-    });
     return () => {
       socket.disconnect();
       console.log("Socket disconnected!");

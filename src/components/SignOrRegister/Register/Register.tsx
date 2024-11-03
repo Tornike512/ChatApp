@@ -18,16 +18,20 @@ export function Register() {
 
   const { allUsernames } = ReceiveAllUsers();
 
-  const { setJoinClicked } = useContext(GlobalContext);
+  const { setJoinClicked, setCurrentUser, currentUser } =
+    useContext(GlobalContext);
 
   const checkUserExistence = allUsernames.map((existingUser) => {
     return existingUser.username === username;
   });
 
+  console.log(currentUser);
+
   const handleJoinClick = () => {
     if (registerImage !== "" && username !== "") {
       setJoinClicked(true);
       CreateNewUser(username, registerImage as string);
+      setCurrentUser(username);
     } else {
       setShowValidation(true);
       setUserExists(false);
