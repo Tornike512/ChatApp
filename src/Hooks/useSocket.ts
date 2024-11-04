@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-const useSocket = (url, options = {}) => {
-  const [socket, setSocket] = useState(null);
+const useSocket = (url: string) => {
+  const [socket, setSocket] = useState<string>("");
 
   useEffect(() => {
-    const socketConnection = io(url, options);
+    const socketConnection: any = io(url);
     setSocket(socketConnection);
 
     return () => {
       socketConnection.disconnect();
     };
-  }, [url, options]);
+  }, [url]);
 
   return socket;
 };
