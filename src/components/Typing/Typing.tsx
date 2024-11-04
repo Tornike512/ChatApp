@@ -1,8 +1,11 @@
+import personImage from "@app/assets/person-image.png";
+
 import "./Typing.scss";
 
 export function Typing() {
   return (
     <div className="typing-container">
+      <img className="user-typing" src={personImage} alt="User Image" />
       <div className="typing">
         <span></span>
         <span></span>

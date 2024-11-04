@@ -1,12 +1,21 @@
 .typing-container {
+  display: flex;
+  align-items: center;
   padding: 20px 10px;
 
+  .user-typing {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 100%;
+  }
+
   .typing {
-    background-color: #b8a2f4;
+    background-color: #222222;
     padding: 8px;
-    width: 120px;
+    width: 60px;
     height: 28px;
-    border: 1px solid #c3acff;
     border-radius: 12px 12px 12px 0;
     display: flex;
     justify-content: center;
@@ -16,14 +25,13 @@
   .typing span {
     content: "";
     display: block;
-    height: 10px;
-    width: 3em;
+    height: 9px;
+    width: 9px;
     border-radius: 50px;
-    background-color: #401a77;
-    margin: auto 0.75em;
-    box-shadow: 5px 5px 5px #1e0660 inset;
-
-    animation: bounce 0.6s infinite;
+    background-color: #bbbbbb;
+    box-shadow: 5px 5px 5px #ebebeb inset;
+    margin: 10px 3px;
+    animation: bounce 0.4s infinite;
     animation-timing-function: ease-in-out;
     animation-direction: alternate;
     animation-delay: 0s;
@@ -38,23 +46,23 @@
 
   @keyframes bounce {
     0% {
-      margin-bottom: 1.5em;
+      margin-bottom: 3px;
     }
 
     25% {
-      margin-bottom: 2.5em;
+      margin-bottom: 6px;
     }
 
     50% {
-      margin-bottom: 3.5em;
+      margin-bottom: 9px;
     }
 
     75% {
-      margin-bottom: 4.5em;
+      margin-bottom: 12px;
     }
 
     100% {
-      margin-bottom: 5em;
+      margin-bottom: 15px;
     }
   }
 }
