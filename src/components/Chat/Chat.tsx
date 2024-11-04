@@ -36,6 +36,8 @@ export function Chat() {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages]);
 
+  console.log(chatHistory);
+
   return (
     <>
       <div className="chat">
@@ -52,11 +54,16 @@ export function Chat() {
             );
           })}
         </div>
-        {chatHistory.map(
-          (chat: any) =>
-            currentUser === chat.username && (
-              <UserText id={uniqueId} message={chat.message} />
-            )
+        {chatHistory.map((chat: any) =>
+          currentUser === chat.username ? (
+            <UserText id={uniqueId} message={chat.message} />
+          ) : (
+            <TheirText
+              userImage={chat.userImage}
+              id={uniqueId}
+              message={chat.message}
+            />
+          )
         )}
         <ChatInput />
         <div ref={endOfPageRef} />
