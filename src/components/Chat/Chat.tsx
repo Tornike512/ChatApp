@@ -6,8 +6,8 @@ import { io } from "socket.io-client";
 import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
-import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { ChatMessageType } from "@app/Types/Types";
+import { Typing } from "../Typing";
 
 import "./Chat.scss";
 
@@ -36,8 +36,6 @@ export function Chat() {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages]);
 
-  console.log(chatHistory);
-
   return (
     <>
       <div className="chat">
@@ -65,6 +63,7 @@ export function Chat() {
             />
           )
         )}
+        <Typing />
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>
