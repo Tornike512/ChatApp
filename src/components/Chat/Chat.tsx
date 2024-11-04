@@ -17,7 +17,7 @@ export function Chat() {
   const { currentUser } = useContext(GlobalContext);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000");
+    const socket = io("https://new-peuc.onrender.com");
 
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);

@@ -25,7 +25,7 @@ export function OtherIcons({
   const socketRef = useRef<any>(null);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:5000");
+    socketRef.current = io("https://new-peuc.onrender.com");
 
     return () => {
       socketRef.current.disconnect();
