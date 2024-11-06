@@ -14,19 +14,26 @@ import "./Chat.scss";
 export function Chat() {
   const [chatHistory, setChatHistory] = useState<ChatMessageType[]>([]);
   const { messages } = SendMessagesToChat();
-  const { currentUser } = useContext(GlobalContext);
+  const { currentUser, typingUser, setTypingUser } = useContext(GlobalContext);
 
   useEffect(() => {
     const socket = io("https://new-peuc.onrender.com");
 
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);
+      setTypingUser((prev) => ({ ...prev, image: userImage }));
     });
+
+    // socket.on("typing", (typing) => {
+    //   setTypingUser((prevTyping) => ({ ...prevTyping, isTyping: typing }));
+    // });
 
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  console.log(typingUser);
 
   const uniqueId = uuidv4();
 

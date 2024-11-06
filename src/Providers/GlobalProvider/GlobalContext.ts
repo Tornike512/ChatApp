@@ -1,5 +1,10 @@
 import { createContext } from "react";
 
+interface TypingUserType {
+  isTyping: boolean;
+  image: string;
+}
+
 interface TGlobalContext {
   showEmojis: boolean;
   setShowEmojis: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,6 +18,8 @@ interface TGlobalContext {
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
   chatMessage: string;
   setChatMessage: React.Dispatch<React.SetStateAction<string>>;
+  typingUser: TypingUserType;
+  setTypingUser: React.Dispatch<React.SetStateAction<TypingUserType>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -28,4 +35,9 @@ export const GlobalContext = createContext<TGlobalContext>({
   setCurrentUser: () => {},
   chatMessage: "",
   setChatMessage: () => {},
+  typingUser: {
+    isTyping: false,
+    image: "",
+  },
+  setTypingUser: () => {},
 });

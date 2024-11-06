@@ -8,6 +8,10 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [joinClicked, setJoinClicked] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<string>("");
   const [chatMessage, setChatMessage] = useState<string>("");
+  const [typingUser, setTypingUser] = useState({
+    isTyping: false,
+    image: "",
+  });
 
   return (
     <GlobalContext.Provider
@@ -24,6 +28,8 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setCurrentUser,
         chatMessage,
         setChatMessage,
+        typingUser,
+        setTypingUser,
       }}
     >
       {children}
