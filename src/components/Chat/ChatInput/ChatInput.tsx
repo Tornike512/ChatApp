@@ -12,8 +12,14 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
-    useContext(GlobalContext);
+  const {
+    showEmojis,
+    setShowEmojis,
+    emoji,
+    emojiClicked,
+    currentUser,
+    setTypingUser,
+  } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
 
@@ -38,6 +44,11 @@ export function ChatInput() {
   const handleChatInput = (e: any) => {
     const newValue = e.target.value;
     setChatInput(newValue);
+    if (newValue !== "") {
+      setTypingUser((typingPrev) => ({ ...typingPrev, isTyping: true }));
+    } else {
+      setTypingUser((typingPrev) => ({ ...typingPrev, isTyping: false }));
+    }
   };
 
   const handleChatForm = (e: any) => {
