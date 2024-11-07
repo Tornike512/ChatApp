@@ -22,11 +22,8 @@ export function Chat() {
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);
       setTypingUser((prev) => ({ ...prev, image: userImage }));
+      console.log(userImage, "userimage");
     });
-
-    // socket.on("typing", (typing) => {
-    //   setTypingUser((prevTyping) => ({ ...prevTyping, isTyping: typing }));
-    // });
 
     return () => {
       socket.disconnect();
@@ -70,7 +67,7 @@ export function Chat() {
             />
           )
         )}
-        <Typing />
+        {typingUser.isTyping && <Typing userImage={typingUser.image} />}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>
