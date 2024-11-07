@@ -21,7 +21,6 @@ export function Chat() {
 
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);
-      setTypingUser((prev) => ({ ...prev, image: userImage }));
       console.log(userImage, "userimage");
     });
 

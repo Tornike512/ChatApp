@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { useWindowSize } from "@uidotdev/usehooks";
+import useSocket from "@app/Hooks/useSocket";
 import OtherIcons from "./OtherIcons";
 
 import importEmoji from "@app/assets/emoji-icon.png";
@@ -18,6 +19,7 @@ export function ChatInput() {
     emoji,
     emojiClicked,
     currentUser,
+    typingUser,
     setTypingUser,
   } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
@@ -25,10 +27,16 @@ export function ChatInput() {
 
   const { allUsernames } = ReceiveAllUsers();
 
+  const socket: any = useSocket();
+
   const usersImages = allUsernames.filter((user) => {
     if (currentUser === user.username) {
       return user.userImage;
     }
+  });
+
+  const currentUserImage = usersImages.map((current) => {
+    return current.userImage;
   });
 
   const { width } = useWindowSize();
@@ -46,6 +54,10 @@ export function ChatInput() {
     setChatInput(newValue);
     if (newValue !== "") {
       setTypingUser((typingPrev) => ({ ...typingPrev, isTyping: true }));
+      socket.emit("typing", {
+        isTyping: typingUser.isTyping,
+        userImage: currentUserImage,
+      });
     } else {
       setTypingUser((typingPrev) => ({ ...typingPrev, isTyping: false }));
     }
