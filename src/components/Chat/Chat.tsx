@@ -14,22 +14,19 @@ import "./Chat.scss";
 export function Chat() {
   const [chatHistory, setChatHistory] = useState<ChatMessageType[]>([]);
   const { messages } = SendMessagesToChat();
-  const { currentUser, typingUser, setTypingUser } = useContext(GlobalContext);
+  const { currentUser, typingUser } = useContext(GlobalContext);
 
   useEffect(() => {
     const socket = io("https://new-peuc.onrender.com");
 
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);
-      console.log(userImage, "userimage");
     });
 
     return () => {
       socket.disconnect();
     };
   }, []);
-
-  console.log(typingUser);
 
   const uniqueId = uuidv4();
 
@@ -66,7 +63,7 @@ export function Chat() {
             />
           )
         )}
-        {typingUser.isTyping && <Typing userImage={typingUser.image} />}
+        {typingUser.isTyping && <Typing />}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

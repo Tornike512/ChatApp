@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 interface TypingUserType {
   isTyping: boolean;
-  image: string;
+  image: string[];
 }
 
 interface TGlobalContext {
@@ -37,7 +37,7 @@ export const GlobalContext = createContext<TGlobalContext>({
   setChatMessage: () => {},
   typingUser: {
     isTyping: false,
-    image: "",
+    image: [],
   },
   setTypingUser: () => {},
 });
