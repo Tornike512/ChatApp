@@ -7,20 +7,24 @@ import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
 import { ChatMessageType } from "@app/Types/Types";
-import { Typing } from "../Typing";
+import { Typing } from "./Typing";
 
 import "./Chat.scss";
 
 export function Chat() {
   const [chatHistory, setChatHistory] = useState<ChatMessageType[]>([]);
   const { messages } = SendMessagesToChat();
-  const { currentUser, typingUser } = useContext(GlobalContext);
+  const { currentUser, typingUser, setTypingUser } = useContext(GlobalContext);
 
   useEffect(() => {
     const socket = io("https://new-peuc.onrender.com");
 
     socket.on("message", ({ message, userImage, username }) => {
       setChatHistory((prev) => [...prev, { message, userImage, username }]);
+    });
+
+    socket.on("typing", ({ userImage, isTyping }) => {
+      setTypingUser({ image: userImage, isTyping: isTyping });
     });
 
     return () => {
@@ -63,7 +67,7 @@ export function Chat() {
             />
           )
         )}
-        {typingUser.isTyping && <Typing />}
+        {typingUser.isTyping && <Typing userImage={typingUser.image} />}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

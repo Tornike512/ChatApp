@@ -4,24 +4,19 @@ import useSocket from "@app/Hooks/useSocket";
 
 import "./Typing.scss";
 
-export function Typing() {
+export function Typing({ userImage }: { userImage: string }) {
   const { typingUser, setTypingUser } = useContext(GlobalContext);
   const socket: any = useSocket();
 
   useEffect(() => {
     if (socket) {
-      socket.on(
-        "typing",
-        ({ isTyping, userImage }: { isTyping: any; userImage: any }) => {
-          console.log({ isTyping, userImage });
+      socket.on("typing", ({ isTyping, userImage }) => {
+        console.log(isTyping, userImage);
+      });
 
-          //   setTypingUser((prev) => ({
-          //     ...prev,
-          //     isTyping: isTyping,
-          //     image: userImage,
-          //   }));
-        }
-      );
+      return () => {
+        socket.off("typing");
+      };
     }
   }, [socket]);
 
@@ -29,7 +24,7 @@ export function Typing() {
 
   return (
     <div className="typing-container">
-      <img className="user-typing" src={typingUser.image[0]} alt="User Image" />
+      <img className="user-typing" src={userImage} alt="User Image" />
       <div className="typing">
         <span></span>
         <span></span>

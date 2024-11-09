@@ -1,7 +1,3 @@
-import { GlobalContext } from "@app/Providers/GlobalProvider";
-import { useEffect, useContext } from "react";
-import { io } from "socket.io-client";
-
 import "./TheirText.scss";
 
 export function TheirText({
