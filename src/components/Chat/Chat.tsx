@@ -38,7 +38,7 @@ export function Chat() {
 
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
-  }, [chatHistory, messages]);
+  }, [chatHistory, messages, typingUser.isTyping]);
 
   return (
     <>
