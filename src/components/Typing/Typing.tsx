@@ -13,23 +13,19 @@ export function Typing() {
       socket.on(
         "typing",
         ({ isTyping, userImage }: { isTyping: any; userImage: any }) => {
-          setTypingUser((prev) => ({
-            ...prev,
-            isTyping: isTyping,
-            image: userImage,
-          }));
+          console.log({ isTyping, userImage });
+
+          //   setTypingUser((prev) => ({
+          //     ...prev,
+          //     isTyping: isTyping,
+          //     image: userImage,
+          //   }));
         }
       );
     }
-
-    return () => {
-      if (socket) {
-        socket.off("typing");
-      }
-    };
   }, [socket]);
 
-  console.log(typingUser.image[0]);
+  console.log(typingUser);
 
   return (
     <div className="typing-container">

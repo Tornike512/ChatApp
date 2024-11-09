@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 
 const useSocket = (url = "http://localhost:5000") => {
-  const [socket, setSocket] = useState<string>("");
+  const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
     const socketConnection: any = io(url);

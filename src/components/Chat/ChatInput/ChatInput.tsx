@@ -53,23 +53,14 @@ export function ChatInput() {
     const newValue = e.target.value;
     setChatInput(newValue);
     if (newValue !== "") {
-      setTypingUser((prev) => ({
-        ...prev,
-        isTyping: true,
-        image: currentUserImage,
-      }));
       socket.emit("typing", {
-        isTyping: typingUser.isTyping,
+        isTyping: true,
         userImage: currentUserImage,
       });
     } else {
-      setTypingUser((prev) => ({
-        ...prev,
-        isTyping: false,
-      }));
       socket.emit("typing", {
-        isTyping: typingUser.isTyping,
-        userImage: currentUserImage,
+        isTyping: false,
+        userImage: "",
       });
     }
   };
