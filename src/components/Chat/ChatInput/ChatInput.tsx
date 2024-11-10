@@ -13,15 +13,8 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const {
-    showEmojis,
-    setShowEmojis,
-    emoji,
-    emojiClicked,
-    currentUser,
-    typingUser,
-    setTypingUser,
-  } = useContext(GlobalContext);
+  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
+    useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
 
@@ -56,11 +49,13 @@ export function ChatInput() {
       socket.emit("typing", {
         isTyping: true,
         userImage: currentUserImage,
+        currentUsername: currentUser,
       });
     } else {
       socket.emit("typing", {
         isTyping: false,
         userImage: "",
+        username: "",
       });
     }
   };

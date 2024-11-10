@@ -2,12 +2,12 @@ import { useRef, useEffect, useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { SendMessagesToChat } from "@app/Hooks/SendMessagesToChat";
-import { io } from "socket.io-client";
 import { TheirText } from "./TheirText";
 import { UserText } from "./UserText";
 import { ChatInput } from "./ChatInput";
 import { ChatMessageType } from "@app/Types/Types";
 import { Typing } from "./Typing";
+import useSocket from "@app/Hooks/useSocket";
 
 import "./Chat.scss";
 
@@ -16,21 +16,27 @@ export function Chat() {
   const { messages } = SendMessagesToChat();
   const { currentUser, typingUser, setTypingUser } = useContext(GlobalContext);
 
+  const socket: any = useSocket();
+
   useEffect(() => {
-    const socket = io("https://new-peuc.onrender.com");
+    if (socket) {
+      socket.on("message", ({ message, userImage, username }: any) => {
+        setChatHistory((prev) => [...prev, { message, userImage, username }]);
+      });
 
-    socket.on("message", ({ message, userImage, username }) => {
-      setChatHistory((prev) => [...prev, { message, userImage, username }]);
-    });
+      socket.on("typing", ({ userImage, isTyping, currentUsername }: any) => {
+        setTypingUser({
+          image: userImage,
+          isTyping: isTyping,
+          username: currentUsername,
+        });
+      });
 
-    socket.on("typing", ({ userImage, isTyping }) => {
-      setTypingUser({ image: userImage, isTyping: isTyping });
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [socket]);
 
   const uniqueId = uuidv4();
 
@@ -67,7 +73,9 @@ export function Chat() {
             />
           )
         )}
-        {typingUser.isTyping && <Typing userImage={typingUser.image} />}
+        {typingUser.isTyping && typingUser.username !== currentUser && (
+          <Typing userImage={typingUser.image} />
+        )}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

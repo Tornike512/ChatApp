@@ -11,6 +11,7 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [typingUser, setTypingUser] = useState({
     isTyping: false,
     image: "",
+    username: "",
   });
 
   return (

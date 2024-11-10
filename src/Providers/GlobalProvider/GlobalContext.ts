@@ -3,6 +3,7 @@ import { createContext } from "react";
 interface TypingUserType {
   isTyping: boolean;
   image: string;
+  username: string;
 }
 
 interface TGlobalContext {
@@ -38,6 +39,7 @@ export const GlobalContext = createContext<TGlobalContext>({
   typingUser: {
     isTyping: false,
     image: "",
+    username: "",
   },
   setTypingUser: () => {},
 });
