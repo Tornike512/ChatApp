@@ -25,11 +25,14 @@ export function Chat() {
       });
 
       socket.on("typing", ({ userImage, isTyping, currentUsername }: any) => {
-        setTypingUser({
-          image: userImage,
-          isTyping: isTyping,
-          username: currentUsername,
-        });
+        setTypingUser((prev) => [
+          ...prev,
+          {
+            image: userImage,
+            isTyping: isTyping,
+            username: currentUsername,
+          },
+        ]);
       });
 
       return () => {
@@ -44,7 +47,7 @@ export function Chat() {
 
   useEffect(() => {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
-  }, [chatHistory, messages, typingUser.isTyping]);
+  }, [chatHistory, messages, typingUser]);
 
   return (
     <>
@@ -73,9 +76,11 @@ export function Chat() {
             />
           )
         )}
-        {typingUser.isTyping && typingUser.username !== currentUser && (
-          <Typing userImage={typingUser.image} />
-        )}
+        {typingUser
+          .filter((user: any) => user.isTyping && user.username !== currentUser)
+          .map((user: any, index: any) => (
+            <Typing key={index} userImage={user.image} />
+          ))}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

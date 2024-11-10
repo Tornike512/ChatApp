@@ -19,8 +19,8 @@ interface TGlobalContext {
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
   chatMessage: string;
   setChatMessage: React.Dispatch<React.SetStateAction<string>>;
-  typingUser: TypingUserType;
-  setTypingUser: React.Dispatch<React.SetStateAction<TypingUserType>>;
+  typingUser: TypingUserType[];
+  setTypingUser: React.Dispatch<React.SetStateAction<TypingUserType[]>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -36,10 +36,12 @@ export const GlobalContext = createContext<TGlobalContext>({
   setCurrentUser: () => {},
   chatMessage: "",
   setChatMessage: () => {},
-  typingUser: {
-    isTyping: false,
-    image: "",
-    username: "",
-  },
+  typingUser: [
+    {
+      isTyping: false,
+      image: "",
+      username: "",
+    },
+  ],
   setTypingUser: () => {},
 });
