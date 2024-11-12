@@ -49,6 +49,12 @@ export function Chat() {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages, typingUser]);
 
+  const lastUserImage = typingUser.map((typing) => {
+    return typing.image;
+  })[typingUser.length - 1];
+
+  console.log(typingUser);
+
   return (
     <>
       <div className="chat">
@@ -76,11 +82,7 @@ export function Chat() {
             />
           )
         )}
-        {typingUser
-          .filter((user: any) => user.isTyping && user.username !== currentUser)
-          .map((user: any, index: any) => (
-            <Typing key={index} userImage={user.image} />
-          ))}
+        {<Typing userImage={lastUserImage} />}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

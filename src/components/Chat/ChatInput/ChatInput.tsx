@@ -13,8 +13,15 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
-    useContext(GlobalContext);
+  const {
+    showEmojis,
+    setShowEmojis,
+    emoji,
+    emojiClicked,
+    currentUser,
+    setTypingUser,
+    typingUser,
+  } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
 
@@ -42,20 +49,27 @@ export function ChatInput() {
     }
   };
 
+  const lastUsername = typingUser.map((typing) => {
+    return typing.username;
+  });
+
   const handleChatInput = (e: any) => {
     const newValue = e.target.value;
     setChatInput(newValue);
-    if (newValue !== "") {
+    if (newValue !== "" && !lastUsername.includes(currentUser)) {
       socket.emit("typing", {
         isTyping: true,
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
-    } else {
-      socket.emit("typing", {
-        isTyping: false,
-        userImage: "",
-        username: "",
+    } else if (newValue === "" && lastUsername.includes(currentUser)) {
+      setTypingUser((prev) => {
+        return prev.map((user) => {
+          if (user.username === currentUser) {
+            return { ...user, isTyping: false };
+          }
+          return user;
+        });
       });
     }
   };

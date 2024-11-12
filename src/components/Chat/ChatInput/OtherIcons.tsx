@@ -23,6 +23,7 @@ export function OtherIcons({
   clearInput,
 }: TSendIcon) {
   const socketRef = useRef<any>(null);
+  const { setTypingUser } = useContext(GlobalContext);
 
   useEffect(() => {
     socketRef.current = io("https://new-peuc.onrender.com");
@@ -43,6 +44,7 @@ export function OtherIcons({
         username: currentUser,
         userImage: userImageOnly.toString(),
       });
+      setTypingUser([{ isTyping: false, image: "", username: "" }]);
     }
     clearInput();
   };
