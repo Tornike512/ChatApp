@@ -62,15 +62,6 @@ export function ChatInput() {
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
-    } else if (newValue === "" && lastUsername.includes(currentUser)) {
-      setTypingUser((prev) => {
-        return prev.map((user) => {
-          if (user.username === currentUser) {
-            return { ...user, isTyping: false };
-          }
-          return user;
-        });
-      });
     }
   };
 
