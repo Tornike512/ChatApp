@@ -27,6 +27,7 @@ export function OtherIcons({
 
   useEffect(() => {
     socketRef.current = io("https://new-peuc.onrender.com");
+    setTypingUser([]);
 
     return () => {
       socketRef.current.disconnect();
@@ -44,7 +45,7 @@ export function OtherIcons({
         username: currentUser,
         userImage: userImageOnly.toString(),
       });
-      setTypingUser([{ isTyping: false, image: "", username: "" }]);
+      setTypingUser([]);
     }
     clearInput();
   };

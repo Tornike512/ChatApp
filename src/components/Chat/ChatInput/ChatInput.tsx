@@ -49,20 +49,33 @@ export function ChatInput() {
     }
   };
 
-  const lastUsername = typingUser.map((typing) => {
-    return typing.username;
-  });
+  const findTypingUser = () => {
+    const isUserTyping = typingUser.find((typing) => {
+      if (typing.username === currentUser && typing.isTyping) {
+        socket.emit("typing", {
+          isTyping: typing.isTyping,
+          userImage: typing.image,
+          currentUsername: typing.username,
+        });
+        setTypingUser((prev: any) => [
+          ...prev,
+          {
+            image: typing.isTyping,
+            isTyping: typing.image,
+            username: typing.username,
+          },
+        ]);
+      }
+    });
+
+    return isUserTyping;
+  };
+
+  console.log(typingUser);
 
   const handleChatInput = (e: any) => {
-    const newValue = e.target.value;
-    setChatInput(newValue);
-    if (newValue !== "" && !lastUsername.includes(currentUser)) {
-      socket.emit("typing", {
-        isTyping: true,
-        userImage: currentUserImage,
-        currentUsername: currentUser,
-      });
-    }
+    setChatInput(e.target.value);
+    findTypingUser();
   };
 
   const handleChatForm = (e: any) => {

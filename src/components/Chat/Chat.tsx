@@ -53,8 +53,6 @@ export function Chat() {
     return typing.image;
   })[typingUser.length - 1];
 
-  console.log(typingUser);
-
   return (
     <>
       <div className="chat">
