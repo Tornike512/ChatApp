@@ -24,6 +24,7 @@ export function ChatInput() {
   } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
+  const [checkUserTyping, setCheckUserTyping] = useState<boolean>(false);
 
   const { allUsernames } = ReceiveAllUsers();
 
@@ -41,24 +42,42 @@ export function ChatInput() {
 
   const { width } = useWindowSize();
 
-  const handleShowEmojis = () => {
-    if (showEmojis) {
-      setShowEmojis(false);
-    } else {
-      setShowEmojis(true);
+  const listOfTypingUsernames = typingUser.find(
+    (user) => user.username === currentUser
+  );
+
+  console.log(typingUser, "listoftypingusernames");
+
+  useEffect(() => {
+    if (!socket) {
+      return;
     }
-  };
 
-  console.log(typingUser, "typinguser");
-
-  const handleChatInput = (e: any) => {
-    setChatInput(e.target.value);
-    if (chatInput !== "") {
+    if (chatInput !== "" && listOfTypingUsernames === undefined) {
       socket.emit("typing", {
         isTyping: true,
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
+    } else if (chatInput === "") {
+      setTypingUser((prev) => prev.filter((user) => user.isTyping === false));
+    }
+  }, [checkUserTyping]);
+
+  const handleChatInput = (e: any) => {
+    setChatInput(e.target.value);
+    if (chatInput === "") {
+      setCheckUserTyping(false);
+    } else {
+      setCheckUserTyping(true);
+    }
+  };
+
+  const handleShowEmojis = () => {
+    if (showEmojis) {
+      setShowEmojis(false);
+    } else {
+      setShowEmojis(true);
     }
   };
 
