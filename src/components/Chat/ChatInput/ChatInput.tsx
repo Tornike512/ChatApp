@@ -42,12 +42,6 @@ export function ChatInput() {
 
   const { width } = useWindowSize();
 
-  const listOfTypingUsernames = typingUser.find((user) => {
-    return user.username === currentUser;
-  });
-
-  console.log(typingUser, "listoftypingusernames");
-
   useEffect(() => {
     if (!socket) {
       return;
@@ -67,13 +61,17 @@ export function ChatInput() {
   }, [checkUserTyping]);
 
   const handleChatInput = (e: any) => {
-    setChatInput(e.target.value);
-    if (chatInput === "") {
+    const inputValue = e.target.value;
+    setChatInput(inputValue);
+    if (inputValue === "") {
       setCheckUserTyping(false);
     } else {
       setCheckUserTyping(true);
     }
   };
+  console.log(chatInput);
+
+  console.log(checkUserTyping);
 
   const handleShowEmojis = () => {
     if (showEmojis) {
