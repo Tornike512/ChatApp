@@ -49,10 +49,6 @@ export function Chat() {
     endOfPageRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatHistory, messages, typingUser]);
 
-  const lastUserImage = typingUser.map((typing) => {
-    return typing.image;
-  })[typingUser.length - 1];
-
   return (
     <>
       <div className="chat">
@@ -80,7 +76,9 @@ export function Chat() {
             />
           )
         )}
-        {<Typing userImage={lastUserImage} />}
+        {typingUser.map((user) => {
+          return <Typing userImage={user.image} />;
+        })}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

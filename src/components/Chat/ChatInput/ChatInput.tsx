@@ -42,9 +42,9 @@ export function ChatInput() {
 
   const { width } = useWindowSize();
 
-  const listOfTypingUsernames = typingUser.find(
-    (user) => user.username === currentUser
-  );
+  const listOfTypingUsernames = typingUser.find((user) => {
+    return user.username === currentUser;
+  });
 
   console.log(typingUser, "listoftypingusernames");
 
@@ -53,14 +53,16 @@ export function ChatInput() {
       return;
     }
 
-    if (chatInput !== "" && listOfTypingUsernames === undefined) {
+    if (checkUserTyping) {
       socket.emit("typing", {
         isTyping: true,
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
-    } else if (chatInput === "") {
-      setTypingUser((prev) => prev.filter((user) => user.isTyping === false));
+    } else {
+      setTypingUser((prev) =>
+        prev.filter((user) => user.username !== currentUser)
+      );
     }
   }, [checkUserTyping]);
 
