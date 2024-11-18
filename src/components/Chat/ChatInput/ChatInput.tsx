@@ -49,7 +49,6 @@ export function ChatInput() {
 
     if (checkUserTyping) {
       socket.emit("typing", {
-        isTyping: true,
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
@@ -69,9 +68,8 @@ export function ChatInput() {
       setCheckUserTyping(true);
     }
   };
-  console.log(chatInput);
 
-  console.log(checkUserTyping);
+  console.log(typingUser, "typinguser");
 
   const handleShowEmojis = () => {
     if (showEmojis) {

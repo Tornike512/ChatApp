@@ -10,7 +10,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
   const [chatMessage, setChatMessage] = useState<string>("");
   const [typingUser, setTypingUser] = useState([
     {
-      isTyping: false,
       image: "",
       username: "",
     },

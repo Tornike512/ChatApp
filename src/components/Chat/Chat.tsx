@@ -24,15 +24,24 @@ export function Chat() {
         setChatHistory((prev) => [...prev, { message, userImage, username }]);
       });
 
-      socket.on("typing", ({ userImage, isTyping, currentUsername }: any) => {
-        setTypingUser((prev) => [
-          ...prev,
-          {
-            image: userImage,
-            isTyping: isTyping,
-            username: currentUsername,
-          },
-        ]);
+      socket.on("typing", ({ userImage, currentUsername }: any) => {
+        setTypingUser((prev) => {
+          const existingUser = prev.find(
+            (user) => user.username === currentUsername
+          );
+
+          if (!existingUser) {
+            return [
+              ...prev,
+              {
+                image: userImage,
+                username: currentUsername,
+              },
+            ];
+          }
+
+          return prev;
+        });
       });
 
       return () => {
