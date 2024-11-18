@@ -20,6 +20,8 @@ interface TGlobalContext {
   setChatMessage: React.Dispatch<React.SetStateAction<string>>;
   typingUser: TypingUserType[];
   setTypingUser: React.Dispatch<React.SetStateAction<TypingUserType[]>>;
+  notTypingUser: TypingUserType[];
+  setNotTypingUser: React.Dispatch<React.SetStateAction<TypingUserType[]>>;
 }
 
 export const GlobalContext = createContext<TGlobalContext>({
@@ -42,4 +44,6 @@ export const GlobalContext = createContext<TGlobalContext>({
     },
   ],
   setTypingUser: () => {},
+  notTypingUser: [{ image: "", username: "" }],
+  setNotTypingUser: () => {},
 });

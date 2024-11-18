@@ -21,6 +21,8 @@ export function ChatInput() {
     currentUser,
     setTypingUser,
     typingUser,
+    setNotTypingUser,
+    notTypingUser,
   } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
@@ -52,10 +54,19 @@ export function ChatInput() {
         userImage: currentUserImage,
         currentUsername: currentUser,
       });
+      setTypingUser((prev: any) => [
+        ...prev,
+        { username: currentUser, image: currentUserImage },
+      ]);
     } else {
-      setTypingUser((prev) =>
-        prev.filter((user) => user.username !== currentUser)
-      );
+      socket.emit("notTyping", {
+        userImage: currentUserImage,
+        currentUsername: currentUser,
+      });
+      setNotTypingUser((prev: any) => [
+        ...prev,
+        { username: currentUser, image: currentUserImage },
+      ]);
     }
   }, [checkUserTyping]);
 
@@ -69,7 +80,7 @@ export function ChatInput() {
     }
   };
 
-  console.log(typingUser, "typinguser");
+  console.log(notTypingUser, "nottyping");
 
   const handleShowEmojis = () => {
     if (showEmojis) {
