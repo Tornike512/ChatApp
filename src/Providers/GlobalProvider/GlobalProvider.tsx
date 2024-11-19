@@ -14,12 +14,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
       username: "",
     },
   ]);
-  const [notTypingUser, setNotTypingUser] = useState([
-    {
-      image: "",
-      username: "",
-    },
-  ]);
 
   return (
     <GlobalContext.Provider
@@ -38,8 +32,6 @@ export function GlobalProvider({ children }: PropsWithChildren) {
         setChatMessage,
         typingUser,
         setTypingUser,
-        notTypingUser,
-        setNotTypingUser,
       }}
     >
       {children}
