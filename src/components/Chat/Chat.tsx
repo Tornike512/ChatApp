@@ -24,31 +24,29 @@ export function Chat() {
         setChatHistory((prev) => [...prev, { message, userImage, username }]);
       });
 
-      socket.on("typing", ({ userImage, currentUsername }: any) => {
+      socket.on("typing", (data: any) => {
         setTypingUser((prev) => {
-          const existingUser = prev.find(
-            (user) => user.username === currentUsername
-          );
-
-          if (!existingUser) {
-            return [
-              ...prev,
-              {
-                image: userImage,
-                username: currentUsername,
-              },
-            ];
+          if (prev.some((user) => user.username === data.username)) {
+            return prev;
           }
-
-          return prev;
+          return [...prev, { username: data.username, image: data.image }];
         });
       });
 
+      socket.on("stop typing", (data: any) => {
+        setTypingUser((prev) =>
+          prev.filter((user) => user.username !== data.username)
+        );
+      });
+
       return () => {
-        socket.disconnect();
+        socket.off("typing");
+        socket.off("stop typing");
       };
     }
   }, [socket]);
+
+  console.log(typingUser);
 
   const uniqueId = uuidv4();
 

@@ -49,14 +49,14 @@ export function ChatInput() {
 
     if (checkUserTyping) {
       socket.emit("typing", {
-        userImage: currentUserImage,
-        currentUsername: currentUser,
+        image: currentUserImage,
+        username: currentUser,
       });
-      setTypingUser((prev: any) => [
-        ...prev,
-        { username: currentUser, image: currentUserImage },
-      ]);
     } else {
+      socket.emit("stop typing", {
+        image: currentUserImage,
+        username: currentUser,
+      });
     }
   }, [checkUserTyping]);
 
