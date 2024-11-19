@@ -83,9 +83,11 @@ export function Chat() {
             />
           )
         )}
-        {typingUser.map((user) => {
-          return <Typing userImage={user.image} />;
-        })}
+        {typingUser
+          .filter((user) => currentUser !== user.username)
+          .map((user) => (
+            <Typing key={user.username} userImage={user.image} />
+          ))}
         <ChatInput />
         <div ref={endOfPageRef} />
       </div>

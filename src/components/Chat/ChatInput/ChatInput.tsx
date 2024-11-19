@@ -13,15 +13,8 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const {
-    showEmojis,
-    setShowEmojis,
-    emoji,
-    emojiClicked,
-    currentUser,
-    setTypingUser,
-    typingUser,
-  } = useContext(GlobalContext);
+  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
+    useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
   const [checkUserTyping, setCheckUserTyping] = useState<boolean>(false);
