@@ -4,15 +4,21 @@ import { UserType } from "@app/Types/Types";
 
 import "./User.scss";
 
-export function User({ user }: { user: UserType }) {
-  const { currentUser } = useContext(GlobalContext);
+export function User({ username }: { username: UserType }) {
+  const { currentUser, typingUser } = useContext(GlobalContext);
 
   return (
     <figure className="user">
-      <img src={user.userImage} alt="Person Image" />
+      <img src={username.userImage} alt="Person Image" />
       <div className="user-name">
-        <figcaption>{user.username}</figcaption>
-        <figcaption>Typing...</figcaption>
+        <figcaption>{username.username}</figcaption>
+        {typingUser.map((user) => {
+          return (
+            <figcaption>
+              {user.username !== username ? "Typing..." : "Online"}
+            </figcaption>
+          );
+        })}
       </div>
       <div className="online-dot"></div>
     </figure>

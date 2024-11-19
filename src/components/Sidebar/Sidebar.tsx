@@ -12,7 +12,7 @@ export function Sidebar() {
       <SearchBar />
       <h2>Users</h2>
       {allUsernames.map((user: any) => {
-        return <User user={user} />;
+        return <User username={user} />;
       })}
     </aside>
   );
