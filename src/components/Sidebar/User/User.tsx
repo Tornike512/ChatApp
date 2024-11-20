@@ -5,20 +5,26 @@ import { UserType } from "@app/Types/Types";
 import "./User.scss";
 
 export function User({ username }: { username: UserType }) {
-  const { currentUser, typingUser } = useContext(GlobalContext);
+  const { typingUser } = useContext(GlobalContext);
+
+  const filterTypingUsers = typingUser.filter(
+    (users) => users.username === username.username
+  );
 
   return (
     <figure className="user">
       <img src={username.userImage} alt="Person Image" />
       <div className="user-name">
         <figcaption>{username.username}</figcaption>
-        {typingUser.map((user) => {
-          return (
-            <figcaption>
-              {user.username !== username ? "Typing..." : "Online"}
+        {filterTypingUsers.length > 0 ? (
+          filterTypingUsers.map((user: any) => (
+            <figcaption key={user.username}>
+              {user.username === username.username ? "Typing..." : "Online"}
             </figcaption>
-          );
-        })}
+          ))
+        ) : (
+          <figcaption>Online</figcaption>
+        )}
       </div>
       <div className="online-dot"></div>
     </figure>

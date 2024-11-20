@@ -46,8 +46,6 @@ export function Chat() {
     }
   }, [socket]);
 
-  console.log(typingUser);
-
   const uniqueId = uuidv4();
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
