@@ -26,7 +26,7 @@ export function OtherIcons({
   const { setTypingUser } = useContext(GlobalContext);
 
   useEffect(() => {
-    socketRef.current = io("https://new-peuc.onrender.com");
+    socketRef.current = io("http://localhost:5000");
     setTypingUser([]);
 
     return () => {

@@ -21,7 +21,12 @@ export function Chat() {
   useEffect(() => {
     if (socket) {
       socket.on("message", ({ message, userImage, username }: any) => {
-        setChatHistory((prev) => [...prev, { message, userImage, username }]);
+        console.log({ message, userImage, username });
+
+        setChatHistory((prev = []) => [
+          ...prev,
+          { message, userImage, username },
+        ]);
       });
 
       socket.on("typing", (data: any) => {
@@ -42,9 +47,12 @@ export function Chat() {
       return () => {
         socket.off("typing");
         socket.off("stop typing");
+        socket.off("message");
       };
     }
   }, [socket]);
+
+  console.log(chatHistory);
 
   const uniqueId = uuidv4();
 
