@@ -8,7 +8,7 @@ export const ReceiveUserByName = (username: string) => {
   const getUser = async () => {
     try {
       const response = await axios.get(
-        `https://new-peuc.onrender.com/user?username=${username}`
+        `http://localhost:5000/user?username=${username}`
       );
 
       setUser(response.data);

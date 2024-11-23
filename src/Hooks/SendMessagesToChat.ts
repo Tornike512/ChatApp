@@ -6,9 +6,7 @@ export const SendMessagesToChat = () => {
 
   const sendMessage = async () => {
     try {
-      const response = await axios.get(
-        `https://new-peuc.onrender.com/messages`
-      );
+      const response = await axios.get(`http://localhost:5000/messages`);
 
       setMessages(response.data);
     } catch (error) {

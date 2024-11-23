@@ -45,10 +45,12 @@ export function OtherIcons({
         username: currentUser,
         userImage: userImageOnly.toString(),
       });
-      setTypingUser([]);
     }
+
     clearInput();
   };
+
+  console.log(sendMessage);
 
   return (
     <>

@@ -13,8 +13,14 @@ import "./ChatInput.scss";
 
 export function ChatInput() {
   const [chatInput, setChatInput] = useState<string>("");
-  const { showEmojis, setShowEmojis, emoji, emojiClicked, currentUser } =
-    useContext(GlobalContext);
+  const {
+    showEmojis,
+    setShowEmojis,
+    emoji,
+    emojiClicked,
+    currentUser,
+    setTypingUser,
+  } = useContext(GlobalContext);
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
   const [checkUserTyping, setCheckUserTyping] = useState<boolean>(false);
@@ -46,6 +52,12 @@ export function ChatInput() {
         username: currentUser,
       });
     } else {
+      socket.on("stop typing", (data: any) => {
+        setTypingUser((prev) =>
+          prev.filter((user) => user.username !== data.username)
+        );
+        console.log(data, "data");
+      });
       socket.emit("stop typing", {
         image: currentUserImage,
         username: currentUser,
@@ -88,6 +100,7 @@ export function ChatInput() {
 
   const clearChatInput = () => {
     setChatInput("");
+    setCheckUserTyping(false);
   };
 
   useEffect(() => {

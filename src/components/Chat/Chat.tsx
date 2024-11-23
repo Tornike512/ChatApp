@@ -21,8 +21,6 @@ export function Chat() {
   useEffect(() => {
     if (socket) {
       socket.on("message", ({ message, userImage, username }: any) => {
-        console.log({ message, userImage, username });
-
         setChatHistory((prev = []) => [
           ...prev,
           { message, userImage, username },
@@ -52,9 +50,9 @@ export function Chat() {
     }
   }, [socket]);
 
-  console.log(chatHistory);
-
   const uniqueId = uuidv4();
+
+  console.log(typingUser);
 
   const endOfPageRef = useRef<HTMLDivElement | null>(null);
 
