@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { ReceiveAllUsers } from "@app/Hooks/ReceiveAllUsers";
 import { GlobalContext } from "@app/Providers/GlobalProvider";
 import { useWindowSize } from "@uidotdev/usehooks";
+import { VoiceMessage } from "../VoiceMessage";
 import useSocket from "@app/Hooks/useSocket";
 import OtherIcons from "./OtherIcons";
 
@@ -134,7 +135,7 @@ export function ChatInput() {
               alt="Import Emoji"
             />
           )}
-          {!startRecord && (
+          {!startRecord ? (
             <input
               value={chatInput}
               onClick={handleShowIcons}
@@ -142,7 +143,10 @@ export function ChatInput() {
               placeholder="Message..."
               type="text"
             />
+          ) : (
+            <VoiceMessage />
           )}
+
           {showIcons && (
             <OtherIcons
               userImage={usersImages}
