@@ -24,6 +24,7 @@ export function ChatInput() {
   const [showIcons, setShowIcons] = useState<boolean>(true);
   const [showSendIcon, setShowSendIcon] = useState<boolean>(false);
   const [checkUserTyping, setCheckUserTyping] = useState<boolean>(false);
+  const [startRecord, setStartRecord] = useState<boolean>(false);
 
   const { allUsernames } = ReceiveAllUsers();
 
@@ -103,6 +104,14 @@ export function ChatInput() {
     setCheckUserTyping(false);
   };
 
+  const handleStartRecord = () => {
+    setStartRecord(true);
+  };
+
+  const handleStopRecord = () => {
+    setStartRecord(false);
+  };
+
   useEffect(() => {
     setChatInput((prevInput) => prevInput + emoji);
   }, [emojiClicked]);
@@ -140,7 +149,18 @@ export function ChatInput() {
             />
           )}
         </form>
-        <img className="record-voice" src={recordVoice} alt="Record Voice" />
+        {!startRecord ? (
+          <img
+            onClick={handleStartRecord}
+            className="record-voice"
+            src={recordVoice}
+            alt="Record Voice"
+          />
+        ) : (
+          <p className="stop-record" onClick={handleStopRecord}>
+            X
+          </p>
+        )}
       </div>
     </>
   );

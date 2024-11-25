@@ -90,4 +90,16 @@
       background-color: $main-hover-color;
     }
   }
+
+  .stop-record-voice {
+    padding: 11px 17px;
+    font-size: 23px;
+    background-color: #312f2f;
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $main-hover-color;
+    }
+  }
 }
