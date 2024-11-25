@@ -1,7 +1,7 @@
 import "./VoiceMessage.scss";
 
 export function VoiceMessage() {
-  return <div></div>;
+  return <div className="record-background"></div>;
 }
 
 export default VoiceMessage;

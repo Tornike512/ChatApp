@@ -106,10 +106,12 @@ export function ChatInput() {
 
   const handleStartRecord = () => {
     setStartRecord(true);
+    setShowIcons(false);
   };
 
   const handleStopRecord = () => {
     setStartRecord(false);
+    setShowIcons(true);
   };
 
   useEffect(() => {
@@ -132,13 +134,15 @@ export function ChatInput() {
               alt="Import Emoji"
             />
           )}
-          <input
-            value={chatInput}
-            onClick={handleShowIcons}
-            onChange={handleChatInput}
-            placeholder="Message..."
-            type="text"
-          />
+          {!startRecord && (
+            <input
+              value={chatInput}
+              onClick={handleShowIcons}
+              onChange={handleChatInput}
+              placeholder="Message..."
+              type="text"
+            />
+          )}
           {showIcons && (
             <OtherIcons
               userImage={usersImages}
@@ -157,7 +161,7 @@ export function ChatInput() {
             alt="Record Voice"
           />
         ) : (
-          <p className="stop-record" onClick={handleStopRecord}>
+          <p className="stop-record-voice" onClick={handleStopRecord}>
             X
           </p>
         )}
