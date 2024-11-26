@@ -50,8 +50,6 @@ export function OtherIcons({
     clearInput();
   };
 
-  console.log(sendMessage);
-
   return (
     <>
       <img
