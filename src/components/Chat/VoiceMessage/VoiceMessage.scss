@@ -12,6 +12,10 @@
   background-color: blue;
   border-radius: 30px;
   animation: record-animation forwards 0.3s ease-in;
+
+  .timer {
+    margin-left: 20px;
+  }
 }
 
 @keyframes record-animation {
